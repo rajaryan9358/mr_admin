@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="user"
+            type="com.ifstatic.mradmin.models.UserModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginVertical="@dimen/_8sdp"
+        android:background="@color/white"
+        app:cardCornerRadius="@dimen/_10sdp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_10sdp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/userimageview"
+                android:layout_width="@dimen/_54sdp"
+                android:layout_height="@dimen/_54sdp"
+                android:src="@color/imagebackgroundgrey"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/headinguserid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/user_id"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@color/colorPrimary"
+                android:fontFamily="@font/nunito_bold"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/userimageview"
+                android:layout_marginStart="@dimen/_20sdp" />
+
+            <TextView
+                android:id="@+id/headingUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/username_"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@color/colorPrimary"
+                android:fontFamily="@font/nunito_bold"
+                android:layout_below="@+id/headinguserid"
+                android:layout_alignStart="@+id/headinguserid" />
+
+            <TextView
+                android:id="@+id/headingpassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/password_"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@color/colorPrimary"
+                android:layout_below="@id/headingUsername"
+                android:layout_alignStart="@+id/headinguserid"
+                android:fontFamily="@font/nunito_bold" />
+
+            <TextView
+                android:id="@+id/userid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/dummy_userid"
+                android:text="@{user.userID}"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@color/colorSecondary"
+                android:fontFamily="@font/nunito_bold"
+                android:layout_toEndOf="@+id/headingpassword"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_alignTop="@+id/headinguserid" />
+
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/dummy_username"
+                android:text="@{user.username}"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@color/colorSecondary"
+                android:layout_alignStart="@id/userid"
+                android:layout_alignTop="@+id/headingUsername"
+                android:fontFamily="@font/nunito" />
+
+            <TextView
+                android:id="@+id/password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/dummy_password"
+                android:text="@{user.userpassword}"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@color/colorSecondary"
+                android:layout_alignStart="@id/userid"
+                android:layout_alignTop="@id/headingpassword"
+                android:fontFamily="@font/nunito" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

@@ -1,3 +1,45 @@
 <resources>
     <string name="app_name">MRAdmin</string>
+
+    <!--    transaction header-->
+    <string name="party">Party</string>
+    <string name="payment">Payment</string>
+    <string name="date_and_time">Date &amp; Time</string>
+    <string name="amount_">Amount: </string>
+    <string name="header_title">Header Title</string>
+    <string name="users">Users</string>
+    <string name="create_user">Create User</string>
+    <string name="username">Username</string>
+    <string name="user_id">User ID:</string>
+    <string name="username_">Username:</string>
+    <string name="password_">Password:</string>
+    <string name="dummy_userid">#SDK00123</string>
+    <string name="dummy_username">Shiva Kumar Kummari</string>
+    <string name="dummy_password">123456789</string>
+    <string name="create_new_user">Create New User</string>
+    <string name="userid">UserId</string>
+    <string name="password">Password</string>
+    <string name="create_new_user_">Create New User</string>
+    <string name="save">Save</string>
+    <string name="edit">Edit</string>
+    <string name="print_transaction">Print Transaction</string>
+    <string name="select_user_name">Select User Name</string>
+    <string name="from_date">From Date</string>
+    <string name="to_date">To Date</string>
+    <string name="cheque_no">Cheque no.</string>
+    <string name="bank_name">Bank Name:</string>
+    <string name="may_25_2023">May 25, 2023</string>
+    <string name="date">Date</string>
+    <string name="payment_details">Payment Details</string>
+    <string name="cheque">Cheque</string>
+    <string name="payment_mode">Payment Mode:</string>
+    <string name="address">Address:</string>
+    <string name="name">Name:</string>
+    <string name="mr_no">MR NO.</string>
+    <string name="edit_transaction">Edit Transaction</string>
+    <string name="online">Online</string>
+    <string name="credit_or_debit">Credit or Debit</string>
+    <string name="cancel">Cancel</string>
+    <string name="amount">Amount</string>
+
 </resources>

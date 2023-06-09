@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".view.EditTransaction.EditTransactionActivity">
+
+        <include
+            android:id="@+id/header"
+            layout="@layout/layout_appbar_header" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/mrNoLabelTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="@string/mr_no"
+                    android:textColor="@color/colorSecondary"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintStart_toStartOf="@id/guideline_left"
+                    app:layout_constraintTop_toBottomOf="@id/guideline_top" />
+
+                <TextView
+                    android:id="@+id/mrNoTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_bold"
+                    android:layout_marginLeft="@dimen/_4sdp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintStart_toEndOf="@id/mrNoLabelTextView"
+                    app:layout_constraintTop_toBottomOf="@id/guideline_top" />
+
+                <TextView
+                    android:id="@+id/dateLabelTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="@string/date"
+                    android:layout_marginRight="@dimen/_4sdp"
+                    android:textColor="@color/colorSecondary"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintEnd_toStartOf="@id/dateTextView"
+                    app:layout_constraintTop_toBottomOf="@id/guideline_top" />
+
+                <TextView
+                    android:id="@+id/dateTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_bold"
+                    android:gravity="end"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                    app:layout_constraintTop_toBottomOf="@id/guideline_top" />
+
+
+                <LinearLayout
+                    android:id="@+id/partyInputLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_46sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:background="@drawable/shape_rectangle_corner_cut"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                    app:layout_constraintStart_toStartOf="@id/guideline_left"
+                    app:layout_constraintTop_toBottomOf="@id/mrNoLabelTextView">
+
+                    <Spinner
+                        android:id="@+id/partySpinner"
+                        style="@style/TextInputLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/_10sdp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/addressLabelTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="@string/address"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_14ssp"
+                    app:layout_constraintStart_toStartOf="@id/guideline_left"
+                    app:layout_constraintTop_toBottomOf="@id/partyInputLayout" />
+
+                <TextView
+                    android:id="@+id/addressTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:textColor="@color/colorSecondary"
+                    android:textSize="@dimen/_14ssp"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                    app:layout_constraintStart_toEndOf="@id/addressLabelTextView"
+                    app:layout_constraintTop_toBottomOf="@id/partyInputLayout" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/amountInputLayout"
+                    style="@style/TextInputLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:hint="@string/amount_"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                    app:layout_constraintStart_toStartOf="@id/guideline_left"
+                    app:layout_constraintTop_toBottomOf="@+id/addressTextView"
+                    app:shapeAppearance="@style/cornerRounded_TextInputLayout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/amountEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_currency_rupee_"
+                        android:drawablePadding="@dimen/_4sdp"
+                        android:singleLine="true"
+                        android:inputType="number"
+                        android:textAppearance="@style/InputTextAppearance"
+                        android:textColor="@color/colorSecondary" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/paymentModeTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:text="@string/payment_mode"
+                    android:textColor="@color/colorSecondary"
+                    android:textSize="@dimen/_14ssp"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                    app:layout_constraintStart_toStartOf="@id/guideline_left"
+                    app:layout_constraintTop_toBottomOf="@id/amountInputLayout" />
+
+                <RadioGroup
+                    android:id="@+id/paymentRadioGroup"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                    app:layout_constraintStart_toStartOf="@id/guideline_left"
+                    app:layout_constraintTop_toBottomOf="@+id/paymentModeTextView">
+
+                    <RadioButton
+                        android:id="@+id/chequeRadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito"
+                        android:text="@string/cheque"
+                        android:buttonTint="@color/colorPrimary"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/chequeDetailsConstraintLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:layout_marginStart="@dimen/_28sdp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/dateInputLayout"
+                            style="@style/TextInputLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_48sdp"
+                            android:hint="@string/date"
+                            android:layout_marginEnd="@dimen/_4sdp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/bankNameInputLayout"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:shapeAppearance="@style/cornerRounded_TextInputLayout">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/dateEditText"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:singleLine="true"
+                                android:inputType="date"
+                                android:textSize="@dimen/_12ssp"
+                                android:textAppearance="@style/InputTextAppearance"
+                                android:textColor="@color/colorSecondary" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/bankNameInputLayout"
+                            style="@style/TextInputLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_48sdp"
+                            android:hint="@string/bank_name"
+                            android:layout_marginStart="@dimen/_4sdp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/dateInputLayout"
+                            app:layout_constraintTop_toTopOf="@+id/dateInputLayout"
+                            app:shapeAppearance="@style/cornerRounded_TextInputLayout">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/bankNameEditText"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:singleLine="true"
+                                android:inputType="text"
+                                android:textSize="@dimen/_12ssp"
+                                android:textAppearance="@style/InputTextAppearance"
+                                android:textColor="@color/colorSecondary" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/chequeNoInputLayout"
+                            style="@style/TextInputLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_48sdp"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:hint="@string/cheque_no"
+                            app:layout_constraintEnd_toEndOf="@id/bankNameInputLayout"
+                            app:layout_constraintStart_toStartOf="@id/dateInputLayout"
+                            app:layout_constraintTop_toBottomOf="@+id/dateInputLayout"
+                            app:shapeAppearance="@style/cornerRounded_TextInputLayout">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/chequeNoEditText"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:singleLine="true"
+                                android:textSize="@dimen/_12ssp"
+                                android:textAppearance="@style/InputTextAppearance"
+                                android:textColor="@color/colorSecondary" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <RadioButton
+                        android:id="@+id/onlineRadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito"
+                        android:text="@string/online"
+                        android:buttonTint="@color/colorPrimary"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <RadioButton
+                        android:id="@+id/UPIRadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito"
+                        android:text="Upi"
+                        android:buttonTint="@color/colorPrimary"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <RadioButton
+                        android:id="@+id/cashRadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito"
+                        android:text="Cash"
+                        android:buttonTint="@color/colorPrimary"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <RadioButton
+                        android:id="@+id/creditDebitRadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/colorPrimary"
+                        android:fontFamily="@font/nunito"
+                        android:text="@string/credit_or_debit"
+                        android:textSize="@dimen/_12ssp" />
+
+                </RadioGroup>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/cancelButton"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginRight="@dimen/_4sdp"
+                    android:backgroundTint="@color/white"
+                    android:fontFamily="@font/nunito"
+                    android:letterSpacing="0"
+                    android:text="@string/cancel"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorSecondary"
+                    android:textSize="@dimen/_12ssp"
+                    app:cornerRadius="@dimen/_8sdp"
+                    app:layout_constraintEnd_toStartOf="@+id/saveButton"
+                    app:layout_constraintStart_toStartOf="@+id/guideline_left"
+                    app:layout_constraintBottom_toBottomOf="@+id/guideline_bottom"
+                    app:layout_constraintTop_toBottomOf="@+id/paymentRadioGroup"
+                    app:rippleColor="@color/black"
+                    app:strokeColor="@color/colorSecondary"
+                    app:strokeWidth="1dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/saveButton"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_marginLeft="@dimen/_4sdp"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:fontFamily="@font/nunito"
+                    android:letterSpacing="0"
+                    android:text="@string/save"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp"
+                    app:cornerRadius="@dimen/_8sdp"
+                    app:layout_constraintEnd_toEndOf="@+id/guideline_right"
+                    app:layout_constraintStart_toEndOf="@+id/cancelButton"
+                    app:layout_constraintTop_toTopOf="@+id/cancelButton"
+                    app:rippleColor="@color/black"
+                    app:strokeColor="@color/colorPrimary"
+                    app:strokeWidth="1dp" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_top"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="@dimen/_10sdp" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="@dimen/_10sdp" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_bottom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_end="@dimen/_10sdp" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="@dimen/_10sdp" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+    </LinearLayout>
+</layout>

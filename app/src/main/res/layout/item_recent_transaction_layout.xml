@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="transactionmodel"
+            type="com.ifstatic.mradmin.models.RecentTransactionModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/holderlayout"
+        android:layout_width="match_parent"
+        android:paddingVertical="@dimen/_5sdp"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/mrNoTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Mr"
+            android:text="@{transactionmodel.mrNo}"
+            android:textAlignment="center"
+            android:textColor="@color/colorSecondary"
+            android:layout_margin="@dimen/_4sdp"
+            android:fontFamily="@font/nunito"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/dateAndTimeTextView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/dateAndTimeTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_4sdp"
+            android:fontFamily="@font/nunito"
+            android:hint="@string/date_and_time"
+            android:text="@{transactionmodel.date}"
+            android:textAlignment="center"
+            android:textColor="@color/colorSecondary"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/mrNoTextView"
+            app:layout_constraintEnd_toStartOf="@id/usernameTextView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/usernameTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_4sdp"
+            android:fontFamily="@font/nunito"
+            android:hint="@string/username"
+            android:text="@{transactionmodel.party}"
+            android:textAlignment="center"
+            android:textColor="@color/colorSecondary"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintStart_toEndOf="@+id/dateAndTimeTextView"
+            app:layout_constraintEnd_toStartOf="@id/amountTextView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/amountTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_4sdp"
+            android:fontFamily="@font/nunito"
+            android:hint="@string/amount"
+            android:text="@{transactionmodel.amount}"
+            android:textAlignment="center"
+            android:textColor="@color/colorSecondary"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintStart_toEndOf="@id/usernameTextView"
+            app:layout_constraintEnd_toStartOf="@id/paymentTextView"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/paymentTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_4sdp"
+            android:fontFamily="@font/nunito"
+            android:hint="@string/payment"
+            android:text="@{transactionmodel.amount}"
+            android:textAlignment="center"
+            android:textColor="@color/colorSecondary"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/amountTextView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
