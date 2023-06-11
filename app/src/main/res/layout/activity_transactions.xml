@@ -69,6 +69,7 @@
             app:boxCornerRadiusBottomEnd="8dp"
             app:boxCornerRadiusTopEnd="8dp"
             android:layout_marginHorizontal="@dimen/_10sdp"
+            android:focusable="false"
             app:boxCornerRadiusBottomStart="8dp"
             app:boxCornerRadiusTopStart="8dp"
             android:layout_marginTop="18dp">
@@ -77,7 +78,7 @@
                 android:id="@+id/startdate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
+                android:inputType="date"
                 android:textColor="#000000"
                 android:padding="7dp"
                 android:drawableEnd="@drawable/ic_calendar"
@@ -100,13 +101,14 @@
         android:layout_marginHorizontal="@dimen/_10sdp"
         app:boxCornerRadiusBottomStart="8dp"
         app:boxCornerRadiusTopStart="8dp"
+        android:focusable="false"
         android:layout_marginTop="18dp">
 
         <AutoCompleteTextView
             android:id="@+id/enddate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
+            android:inputType="date"
             android:paddingEnd="@dimen/_5sdp"
             android:textColor="#000000"
             android:drawableEnd="@drawable/ic_calendar"

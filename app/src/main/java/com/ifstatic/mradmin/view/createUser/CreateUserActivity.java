@@ -16,6 +16,8 @@ import com.ifstatic.mradmin.models.UserModel;
 import com.ifstatic.mradmin.utilities.AppBoiler;
 import com.ifstatic.mradmin.utilities.Constants;
 
+import java.util.UUID;
+
 public class CreateUserActivity extends AppCompatActivity {
 
     ActivityCreateUserBinding createUserBinding;
@@ -34,10 +36,7 @@ public class CreateUserActivity extends AppCompatActivity {
 
     private void setlistners() {
         createUserBinding.createnewuserbutton.setOnClickListener(v->{
-            if (createUserBinding.userID.getText().toString().trim().isEmpty()){
-                createUserBinding.userID.setError("Enter User ID");
-                createUserBinding.userID.requestFocus();
-            }else if (createUserBinding.userName.getText().toString().trim().isEmpty()){
+             if (createUserBinding.userName.getText().toString().trim().isEmpty()){
                 createUserBinding.userName.setError("Enter User Name");
                 createUserBinding.userName.requestFocus();
             }else if (createUserBinding.userPassword.getText().toString().trim().isEmpty()){
@@ -58,11 +57,10 @@ public class CreateUserActivity extends AppCompatActivity {
     private void addUserToFirebase() {
 
         progressDialog = AppBoiler.setProgressDialog(this);
-        textuserid=createUserBinding.userID.getText().toString();
         textusername=createUserBinding.userName.getText().toString();
         textuserpassword=createUserBinding.userPassword.getText().toString();
         UserModel user=new UserModel(textuserid,textusername,textuserpassword);
-        LiveData<String> responseLiveData = createUserViewModel.addUserResponseLiveData(user);
+        LiveData<String> responseLiveData = createUserViewModel.addUserResponseLiveData(user,textuserid);
 
         responseLiveData.observe(this, new Observer<String>() {
             @Override
@@ -83,6 +81,8 @@ public class CreateUserActivity extends AppCompatActivity {
 
     private void setinit() {
         createUserBinding.createuserheader.titleTextView.setText("Create New User");
+        textuserid= UUID.randomUUID().toString().substring(11);
+        createUserBinding.userID.setText(textuserid);
     }
 
 

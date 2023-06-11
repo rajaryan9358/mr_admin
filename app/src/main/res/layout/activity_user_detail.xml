@@ -1,196 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.UserDetails.UserDetailActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-<LinearLayout
-    android:id="@+id/layoutheader"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    app:layout_constraintTop_toTopOf="parent">
-    <include
-        android:id="@+id/header"
-        layout="@layout/layout_appbar_header" />
-</LinearLayout>
+    <data>
+    <variable
+        name="user"
+        type="com.ifstatic.mradmin.models.UserModel" />
+    </data>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/carduserdetails"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layoutheader"
-        app:cardCornerRadius="@dimen/_10sdp"
-        app:cardElevation="@dimen/_2sdp"
-        android:layout_marginHorizontal="@dimen/_10sdp"
-        >
+        android:layout_height="match_parent"
+        tools:context=".view.UserDetails.UserDetailActivity">
 
-        <RelativeLayout
+        <LinearLayout
+            android:id="@+id/layoutheader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/_10sdp"
-            >
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/edit"
-                android:fontFamily="@font/nunito_bold"
-                android:textSize="@dimen/_12sdp"
-                android:textColor="@color/blue_700"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true"
-                app:drawableStartCompat="@drawable/ic_edit"
-                app:drawableTint="@color/blue_700" />
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/userimageview"
-                android:layout_width="@dimen/_54sdp"
-                android:layout_height="@dimen/_54sdp"
-                android:src="@color/imagebackgroundgrey"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="@dimen/_4sdp"
-                android:layout_alignParentStart="true"
-                />
-            <TextView
-                android:id="@+id/headinguserid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/user_id"
-                android:textSize="@dimen/_12sdp"
-                android:textColor="@color/colorPrimary"
-                android:fontFamily="@font/nunito_bold"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="@dimen/_4sdp"
-                android:layout_toEndOf="@+id/userimageview"
-                android:layout_marginStart="@dimen/_20sdp"
-                />
+            <include
+                android:id="@+id/header"
+                layout="@layout/layout_appbar_header" />
+        </LinearLayout>
 
-            <TextView
-                android:id="@+id/headingUsername"
-                android:layout_width="wrap_content"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/carduserdetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutheader"
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:cardElevation="@dimen/_2sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/username_"
-                android:textSize="@dimen/_12sdp"
-                android:textColor="@color/colorPrimary"
-                android:fontFamily="@font/nunito_bold"
-                android:layout_below="@+id/headinguserid"
-                android:layout_alignStart="@+id/headinguserid"
-                />
-            <TextView
-                android:id="@+id/headingpassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/password_"
-                android:textSize="@dimen/_12sdp"
-                android:textColor="@color/colorPrimary"
-                android:layout_below="@id/headingUsername"
-                android:layout_alignStart="@+id/headinguserid"
-                android:fontFamily="@font/nunito_bold"
-                />
-            <TextView
-                android:id="@+id/userid"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/dummy_userid"
-                android:textSize="@dimen/_12sdp"
-                android:textColor="@color/colorSecondary"
-                android:fontFamily="@font/nunito_bold"
-                android:layout_toEndOf="@+id/headingpassword"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_alignTop="@+id/headinguserid"
-                />
-            <TextView
-                android:id="@+id/username"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/dummy_username"
-                android:textSize="@dimen/_12sdp"
-                android:textColor="@color/colorSecondary"
-                android:layout_alignStart="@id/userid"
-                android:layout_alignTop="@+id/headingUsername"
-                android:fontFamily="@font/nunito"
-                />
-            <TextView
-                android:id="@+id/password"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/dummy_password"
-                android:textSize="@dimen/_12sdp"
-                android:textColor="@color/colorSecondary"
-                android:layout_alignStart="@id/userid"
-                android:layout_alignTop="@id/headingpassword"
-                android:fontFamily="@font/nunito"
-                />
-        </RelativeLayout>
+                android:padding="@dimen/_10sdp">
+
+                <TextView
+                    android:id="@+id/textEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/edit"
+                    android:fontFamily="@font/nunito_bold"
+                    android:textSize="@dimen/_12sdp"
+                    android:textColor="@color/blue_700"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    app:drawableStartCompat="@drawable/ic_edit"
+                    app:drawableTint="@color/blue_700" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/userimageview"
+                    android:layout_width="@dimen/_54sdp"
+                    android:layout_height="@dimen/_54sdp"
+                    android:src="@color/imagebackgroundgrey"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_alignParentStart="true" />
+
+                <TextView
+                    android:id="@+id/headinguserid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/user_id"
+                    android:textSize="@dimen/_12sdp"
+                    android:textColor="@color/colorPrimary"
+                    android:fontFamily="@font/nunito_bold"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:layout_toEndOf="@+id/userimageview"
+                    android:layout_marginStart="@dimen/_20sdp" />
+
+                <TextView
+                    android:id="@+id/headingUsername"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/username_"
+                    android:textSize="@dimen/_12sdp"
+                    android:textColor="@color/colorPrimary"
+                    android:fontFamily="@font/nunito_bold"
+                    android:layout_below="@+id/headinguserid"
+                    android:layout_alignStart="@+id/headinguserid" />
+
+                <TextView
+                    android:id="@+id/headingpassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/password_"
+                    android:textSize="@dimen/_12sdp"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_below="@id/headingUsername"
+                    android:layout_alignStart="@+id/headinguserid"
+                    android:fontFamily="@font/nunito_bold" />
+
+                <TextView
+                    android:id="@+id/userid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/dummy_userid"
+                    android:text="@{user.userID}"
+                    android:textSize="@dimen/_12sdp"
+                    android:textColor="@color/colorSecondary"
+                    android:fontFamily="@font/nunito_bold"
+                    android:layout_toEndOf="@+id/headingpassword"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_alignTop="@+id/headinguserid" />
+
+                <TextView
+                    android:id="@+id/username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/dummy_username"
+                    android:text="@{user.username}"
+                    android:textSize="@dimen/_12sdp"
+                    android:textColor="@color/colorSecondary"
+                    android:layout_alignStart="@id/userid"
+                    android:layout_alignTop="@+id/headingUsername"
+                    android:fontFamily="@font/nunito" />
+
+                <TextView
+                    android:id="@+id/password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/dummy_password"
+                    android:text="@{user.userpassword}"
+                    android:textSize="@dimen/_12sdp"
+                    android:textColor="@color/colorSecondary"
+                    android:layout_alignStart="@id/userid"
+                    android:layout_alignTop="@id/headingpassword"
+                    android:fontFamily="@font/nunito" />
+            </RelativeLayout>
 
 
+        </androidx.cardview.widget.CardView>
 
-    </androidx.cardview.widget.CardView>
+        <LinearLayout
+            android:id="@+id/layouttransactions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_20sdp"
+            app:layout_constraintTop_toBottomOf="@+id/carduserdetails">
 
-    <LinearLayout
-        android:id="@+id/layouttransactions"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="@dimen/_20sdp"
-        app:layout_constraintTop_toBottomOf="@+id/carduserdetails"
-        >
-        <include
-            android:id="@+id/header_recent_transaction"
-            layout="@layout/layout_usertransaction_header" />
-    </LinearLayout>
+            <include
+                android:id="@+id/header_recent_transaction"
+                layout="@layout/layout_usertransaction_header" />
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/userTransactionRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintTop_toBottomOf="@+id/layouttransactions"
             app:layout_constraintBottom_toTopOf="@+id/layoutbutton"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            />
-    
-    <LinearLayout
-        android:id="@+id/layoutbutton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        android:padding="@dimen/_5sdp"
-        android:gravity="center_vertical"
-        >
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/printTransactionbutton"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+        <LinearLayout
+            android:id="@+id/layoutbutton"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:drawableStart="@drawable/ic_add"
-            android:layout_margin="@dimen/_5sdp"
-            android:padding="@dimen/_10sdp"
-            android:text="@string/print_transaction"
-            android:textAllCaps="false"
-            app:cornerRadius="@dimen/_8sdp" />
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/shareTransactionButton"
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:drawableStart="@drawable/ic_add"
-            android:padding="@dimen/_10sdp"
-            android:layout_margin="@dimen/_5sdp"
-            android:text="Share Transaction"
-            android:textAllCaps="false"
-            app:cornerRadius="@dimen/_8sdp" />
-    </LinearLayout>
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="@dimen/_5sdp"
+            android:gravity="center_vertical">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/printTransactionbutton"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableStart="@drawable/ic_add"
+                android:layout_margin="@dimen/_5sdp"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/print_transaction"
+                android:textAllCaps="false"
+                app:cornerRadius="@dimen/_8sdp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/shareTransactionButton"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:drawableStart="@drawable/ic_add"
+                android:padding="@dimen/_10sdp"
+                android:layout_margin="@dimen/_5sdp"
+                android:text="Share Transaction"
+                android:textAllCaps="false"
+                app:cornerRadius="@dimen/_8sdp" />
+        </LinearLayout>
 
 
-
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

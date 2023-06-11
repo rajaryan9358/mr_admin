@@ -17,13 +17,19 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.ifstatic.mradmin.R;
+import com.ifstatic.mradmin.adapter.PartyAdapter;
 import com.ifstatic.mradmin.adapter.RecentTransactionAdapter;
 import com.ifstatic.mradmin.databinding.ActivityDashboardBinding;
+import com.ifstatic.mradmin.models.PartyModel;
 import com.ifstatic.mradmin.models.RecentTransactionModel;
 import com.ifstatic.mradmin.utilities.AppBoiler;
+import com.ifstatic.mradmin.utilities.DateFormat;
+import com.ifstatic.mradmin.view.EditTransaction.EditTransactionActivity;
+import com.ifstatic.mradmin.view.PartyDetailActivity.PartyDetailActivity;
 import com.ifstatic.mradmin.view.TransactionDetail.TransactionDetailActivity;
 import com.ifstatic.mradmin.view.Transactions.TransactionsActivity;
 import com.ifstatic.mradmin.view.Users.UsersActivity;
+import com.ifstatic.mradmin.view.ViewAllParty.ViewAllPartyActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,6 +38,8 @@ import java.util.List;
 public class DashboardActivity extends AppCompatActivity{
     private ActivityDashboardBinding dashboardBinding;
     private DashBoardViewModel dashBoardViewModel;
+    private List<PartyModel> partyModelList;
+    private PartyAdapter partyAdapter;
 
     LiveData<List<String>> usernamelistLiveData;
 
@@ -49,6 +57,7 @@ public class DashboardActivity extends AppCompatActivity{
         setListners();
         setinit();
         setRecentTransactionAdapter();
+        setMyPartiesAdapter();
 
 
         if(AppBoiler.isInternetConnected(this)){
@@ -56,7 +65,8 @@ public class DashboardActivity extends AppCompatActivity{
             progressDialog = AppBoiler.setProgressDialog(this);
             getRecentTransactionFromServer();
             getUserNameListFromServer();
-//            getMyPartiesFromServer();
+            getMyPartiesFromServer();
+            getCardDetailsFromServer();
 
         } else {
             AppBoiler.showSnackBarForInternet(this,dashboardBinding.getRoot());
@@ -102,6 +112,13 @@ public class DashboardActivity extends AppCompatActivity{
 
     private void setListners() {
 
+        dashboardBinding.viewAllPartyTextView.setOnClickListener(v->{
+            AppBoiler.navigateToActivity(DashboardActivity.this, ViewAllPartyActivity.class,null);
+        });
+        dashboardBinding.createTransaction.setOnClickListener(v->{
+            AppBoiler.navigateToActivity(DashboardActivity.this, EditTransactionActivity.class,null);
+        });
+
         dashboardBinding.usernamedropdown.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -128,7 +145,7 @@ public class DashboardActivity extends AppCompatActivity{
             AppBoiler.navigateToActivity(DashboardActivity.this, UsersActivity.class,null);
         });
 
-        dashboardBinding.headingSeeAll.setOnClickListener(v->{
+        dashboardBinding.headingSeeAllTransaction.setOnClickListener(v->{
             AppBoiler.navigateToActivity(DashboardActivity.this, TransactionsActivity.class,null);
         });
 
@@ -193,7 +210,7 @@ public class DashboardActivity extends AppCompatActivity{
 
                 Bundle bundle = new Bundle();
                 bundle.putParcelable("transaction_data",transactionModel);
-                AppBoiler.navigateToActivity(DashboardActivity.this, TransactionDetailActivity.class,null);
+                AppBoiler.navigateToActivity(DashboardActivity.this, TransactionDetailActivity.class,bundle);
             }
 
         });
@@ -203,5 +220,67 @@ public class DashboardActivity extends AppCompatActivity{
     private void notifyRecentTransactionAdapter(List<RecentTransactionModel> transactionModelList){
         transactionAdapter.notifyListItemChanged(transactionModelList);
     }
+
+        public void getCardDetailsFromServer(){
+        LiveData<List<Float>> cardlist= dashBoardViewModel.getCardDetailsFromRepository(DateFormat.getCurrentDate());
+        cardlist.observe(this, new Observer<List<Float>>() {
+            @Override
+            public void onChanged(List<Float> floats) {
+                progressDialog.dismiss();
+                if (floats.size()>0){
+                    Toast.makeText(DashboardActivity.this, "result", Toast.LENGTH_SHORT).show();
+
+                    dashboardBinding.totalAmountNumber.setText(String.valueOf(floats.get(0)));
+                    dashboardBinding.todayTransactiomNumber.setText(String.valueOf(floats.get(1)));
+                }else{
+                    Toast.makeText(DashboardActivity.this, "no result", Toast.LENGTH_SHORT).show();
+                    dashboardBinding.totalAmountNumber.setText("0");
+                    dashboardBinding.todayTransactiomNumber.setText("0");
+                }
+            }
+        });
+
+        }
+    //////////////////////////////////////////////////////Parties////////////////////////////////////////////////////////////
+    private void getMyPartiesFromServer(){
+
+        LiveData<List<PartyModel>> myPartiesModelListLiveData = dashBoardViewModel.getPartiesModelListFromRepository();
+        myPartiesModelListLiveData.observe(this, new Observer<List<PartyModel>>() {
+            @Override
+            public void onChanged(List<PartyModel> partyModels) {
+
+                progressDialog.dismiss();
+
+                if(partyModels.size() >0){
+                    dashboardBinding.viewAllPartyTextView.setVisibility(View.VISIBLE);
+                } else {
+                    dashboardBinding.viewAllPartyTextView.setVisibility(View.GONE);
+                }
+                partyModelList = partyModels;
+                notifyPartiesAdapter();
+            }
+        });
+    }
+
+        private void setMyPartiesAdapter(){
+
+            partyAdapter = new PartyAdapter(this);
+            dashboardBinding.myPartiesRecyclerView.setAdapter(partyAdapter);
+
+            partyAdapter.initItemClickListener(new PartyAdapter.PartyItemClickListener() {
+                @Override
+                public void onClickItem(int position, PartyModel model) {
+
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable("party_data",model);
+//                    AppBoiler.navigateToActivity(DashboardActivity.this, PartyDetailActivity.class,bundle);
+                }
+            });
+        }
+
+        private void notifyPartiesAdapter() {
+            partyAdapter.notifyListIsChanged(partyModelList);
+        }
+
 
 }

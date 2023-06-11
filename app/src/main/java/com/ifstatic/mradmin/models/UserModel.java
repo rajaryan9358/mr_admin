@@ -10,6 +10,12 @@ public class UserModel implements Parcelable {
     String username;
     String userpassword;
 
+    protected UserModel(Parcel in) {
+        userID = in.readString();
+        username = in.readString();
+        userpassword = in.readString();
+    }
+
     public UserModel() {
     }
 
@@ -17,12 +23,6 @@ public class UserModel implements Parcelable {
         this.userID = userID;
         this.username = username;
         this.userpassword = userpassword;
-    }
-
-    protected UserModel(Parcel in) {
-        userID = in.readString();
-        username = in.readString();
-        userpassword = in.readString();
     }
 
     public static final Creator<UserModel> CREATOR = new Creator<UserModel>() {
@@ -68,8 +68,8 @@ public class UserModel implements Parcelable {
 
     @Override
     public void writeToParcel(@NonNull Parcel parcel, int i) {
-        this.userID=parcel.toString();
-        this.username=parcel.toString();
-        this.userpassword=parcel.toString();
+        parcel.writeString(userID);
+        parcel.writeString(username);
+        parcel.writeString(userpassword);
     }
 }

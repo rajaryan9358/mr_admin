@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.ifstatic.mradmin.models.PartyModel;
 import com.ifstatic.mradmin.models.RecentTransactionModel;
 
 import java.util.List;
@@ -15,6 +16,11 @@ public class DashBoardViewModel extends ViewModel {
     MutableLiveData<Integer> totalTransactions=new MutableLiveData<>();
     MutableLiveData<Float> totalAmount=new MutableLiveData<>();
 
+    float amount,count;
+
+    private LiveData<List<PartyModel>> myPartiesListLiveData;
+
+
     public LiveData<List<RecentTransactionModel>> getRecentTransactionsFromRepository(){
         return dashboardrepository.getRecentTransactionsFromServer();
     }
@@ -25,6 +31,21 @@ public class DashBoardViewModel extends ViewModel {
     public  LiveData<List<String>> getUserNameListFromRepository(){
         return dashboardrepository.getUserNameList();
     }
+
+
+    public LiveData<List<PartyModel>> getPartiesModelListFromRepository(){
+
+        if(myPartiesListLiveData == null){
+            myPartiesListLiveData =  dashboardrepository.getMyPartiesFromServer();
+        }
+        return myPartiesListLiveData;
+    }
+
+    public LiveData<List<Float>> getCardDetailsFromRepository(String date){
+        return dashboardrepository.getcardDetailsfromserver(date);
+    }
+
+
 
 
 }

@@ -34,16 +34,23 @@
                     android:textColor="@color/colorSecondary"
                     android:textSize="@dimen/_12ssp"
                     app:layout_constraintStart_toStartOf="@id/guideline_left"
+                    app:layout_constraintBottom_toBottomOf="@+id/mrNoTedittext"
                     app:layout_constraintTop_toBottomOf="@id/guideline_top" />
 
-                <TextView
-                    android:id="@+id/mrNoTextView"
+
+
+
+                <EditText
+                    android:id="@+id/mrNoTedittext"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nunito_bold"
+                    android:minWidth="@dimen/_50sdp"
+                    android:maxWidth="@dimen/_70sdp"
                     android:layout_marginLeft="@dimen/_4sdp"
+                    android:fontFamily="@font/nunito_bold"
                     android:textColor="@color/colorPrimary"
                     android:textSize="@dimen/_12ssp"
+                    android:foregroundTint="@color/colorPrimary"
                     app:layout_constraintStart_toEndOf="@id/mrNoLabelTextView"
                     app:layout_constraintTop_toBottomOf="@id/guideline_top" />
 
@@ -51,9 +58,10 @@
                     android:id="@+id/dateLabelTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/_4sdp"
                     android:fontFamily="@font/nunito_bold"
                     android:text="@string/date"
-                    android:layout_marginRight="@dimen/_4sdp"
+                    android:visibility="invisible"
                     android:textColor="@color/colorSecondary"
                     android:textSize="@dimen/_12ssp"
                     app:layout_constraintEnd_toStartOf="@id/dateTextView"
@@ -71,24 +79,128 @@
                     app:layout_constraintTop_toBottomOf="@id/guideline_top" />
 
 
+                <TextView
+                    android:id="@+id/labelUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="@string/username"
+                    android:textColor="@color/colorSecondary"
+                    android:visibility="invisible"
+                    android:textSize="@dimen/_12ssp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:layout_constraintStart_toStartOf="@id/guideline_left"
+                    app:layout_constraintTop_toBottomOf="@id/mrNoLabelTextView" />
+
+<!--                <TextView-->
+<!--                    android:id="@+id/labelPartyName"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:fontFamily="@font/nunito_bold"-->
+<!--                    android:text="@string/party_name"-->
+<!--                    android:textColor="@color/colorSecondary"-->
+<!--                    android:layout_marginTop="@dimen/_10sdp"-->
+<!--                    android:textSize="@dimen/_12ssp"-->
+<!--                    app:layout_constraintStart_toStartOf="@id/guideline_left"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/userNameInputLayout" />-->
+
+
                 <LinearLayout
                     android:id="@+id/partyInputLayout"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/_46sdp"
-                    android:layout_marginTop="@dimen/_16sdp"
-                    android:background="@drawable/shape_rectangle_corner_cut"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_2sdp"
                     app:layout_constraintEnd_toEndOf="@id/guideline_right"
                     app:layout_constraintStart_toStartOf="@id/guideline_left"
-                    app:layout_constraintTop_toBottomOf="@id/mrNoLabelTextView">
+                    app:layout_constraintTop_toBottomOf="@id/userNameInputLayout">
 
-                    <Spinner
-                        android:id="@+id/partySpinner"
-                        style="@style/TextInputLayout"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:hint="Date"
+                        app:hintTextColor="@color/black"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        app:boxCornerRadiusBottomEnd="8dp"
+                        app:boxCornerRadiusTopEnd="8dp"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        app:boxCornerRadiusBottomStart="8dp"
+                        app:boxCornerRadiusTopStart="8dp"
+                        android:layout_marginTop="18dp">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/transactiondate"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="@dimen/_10sdp" />
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:textColorHint="@color/black"
+                        android:textColor="#000000"
+                        android:padding="7dp"
+                        android:textColorLink="#FFFFFF" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:hint="Party"
+                        app:hintTextColor="@color/text_color_dark_grey"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        app:boxCornerRadiusBottomEnd="8dp"
+                        app:boxCornerRadiusTopEnd="8dp"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        app:boxCornerRadiusBottomStart="8dp"
+                        app:boxCornerRadiusTopStart="8dp"
+                        android:layout_marginTop="18dp">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/partynamedropdown"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:textColor="#000000"
+                        android:padding="7dp"
+                        android:textColorLink="#FFFFFF" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/userNameInputLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                    app:layout_constraintStart_toStartOf="@id/guideline_left"
+                    app:layout_constraintTop_toBottomOf="@id/labelUserName">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Username"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        app:boxCornerRadiusBottomEnd="8dp"
+                        app:boxCornerRadiusTopEnd="8dp"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        app:boxCornerRadiusBottomStart="8dp"
+                        app:boxCornerRadiusTopStart="8dp"
+                        android:layout_marginTop="18dp">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/usernamedropdown"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:textColor="#000000"
+                            android:padding="7dp"
+                            android:textColorLink="#FFFFFF" />
+
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
 
                 <TextView
                     android:id="@+id/addressLabelTextView"
@@ -102,8 +214,8 @@
                     app:layout_constraintStart_toStartOf="@id/guideline_left"
                     app:layout_constraintTop_toBottomOf="@id/partyInputLayout" />
 
-                <TextView
-                    android:id="@+id/addressTextView"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/addressEditText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_10sdp"
@@ -111,6 +223,8 @@
                     android:fontFamily="@font/nunito_semibold"
                     android:textColor="@color/colorSecondary"
                     android:textSize="@dimen/_14ssp"
+                    style="@style/TextInputLayout"
+                    android:shadowRadius="@integer/material_motion_duration_long_1"
                     app:layout_constraintEnd_toEndOf="@id/guideline_right"
                     app:layout_constraintStart_toEndOf="@id/addressLabelTextView"
                     app:layout_constraintTop_toBottomOf="@id/partyInputLayout" />
@@ -121,10 +235,10 @@
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_50sdp"
                     android:layout_marginTop="@dimen/_16sdp"
-                    android:hint="@string/amount_"
+                    android:hint="@string/amount"
                     app:layout_constraintEnd_toEndOf="@id/guideline_right"
                     app:layout_constraintStart_toStartOf="@id/guideline_left"
-                    app:layout_constraintTop_toBottomOf="@+id/addressTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/addressEditText"
                     app:shapeAppearance="@style/cornerRounded_TextInputLayout">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -133,8 +247,8 @@
                         android:layout_height="wrap_content"
                         android:drawableStart="@drawable/ic_currency_rupee_"
                         android:drawablePadding="@dimen/_4sdp"
-                        android:singleLine="true"
                         android:inputType="number"
+                        android:singleLine="true"
                         android:textAppearance="@style/InputTextAppearance"
                         android:textColor="@color/colorSecondary" />
 
@@ -166,28 +280,28 @@
                         android:id="@+id/chequeRadioButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:buttonTint="@color/colorPrimary"
                         android:fontFamily="@font/nunito"
                         android:text="@string/cheque"
-                        android:buttonTint="@color/colorPrimary"
                         android:textSize="@dimen/_12ssp" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/chequeDetailsConstraintLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:visibility="gone"
+                        android:layout_marginStart="@dimen/_28sdp"
                         android:layout_marginBottom="@dimen/_8sdp"
-                        android:layout_marginStart="@dimen/_28sdp">
+                        android:visibility="gone">
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/dateInputLayout"
                             style="@style/TextInputLayout"
                             android:layout_width="0dp"
                             android:layout_height="@dimen/_48sdp"
-                            android:hint="@string/date"
                             android:layout_marginEnd="@dimen/_4sdp"
-                            app:layout_constraintStart_toStartOf="parent"
+                            android:hint="@string/date"
                             app:layout_constraintEnd_toStartOf="@+id/bankNameInputLayout"
+                            app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:shapeAppearance="@style/cornerRounded_TextInputLayout">
 
@@ -195,11 +309,12 @@
                                 android:id="@+id/dateEditText"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:singleLine="true"
+                                android:focusable="false"
                                 android:inputType="date"
-                                android:textSize="@dimen/_12ssp"
+                                android:singleLine="true"
                                 android:textAppearance="@style/InputTextAppearance"
-                                android:textColor="@color/colorSecondary" />
+                                android:textColor="@color/colorSecondary"
+                                android:textSize="@dimen/_12ssp" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -208,8 +323,8 @@
                             style="@style/TextInputLayout"
                             android:layout_width="0dp"
                             android:layout_height="@dimen/_48sdp"
-                            android:hint="@string/bank_name"
                             android:layout_marginStart="@dimen/_4sdp"
+                            android:hint="@string/bank_name"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/dateInputLayout"
                             app:layout_constraintTop_toTopOf="@+id/dateInputLayout"
@@ -219,11 +334,11 @@
                                 android:id="@+id/bankNameEditText"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:singleLine="true"
                                 android:inputType="text"
-                                android:textSize="@dimen/_12ssp"
+                                android:singleLine="true"
                                 android:textAppearance="@style/InputTextAppearance"
-                                android:textColor="@color/colorSecondary" />
+                                android:textColor="@color/colorSecondary"
+                                android:textSize="@dimen/_12ssp" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -244,9 +359,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:singleLine="true"
-                                android:textSize="@dimen/_12ssp"
                                 android:textAppearance="@style/InputTextAppearance"
-                                android:textColor="@color/colorSecondary" />
+                                android:textColor="@color/colorSecondary"
+                                android:textSize="@dimen/_12ssp" />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -256,37 +371,152 @@
                         android:id="@+id/onlineRadioButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:buttonTint="@color/colorPrimary"
                         android:fontFamily="@font/nunito"
                         android:text="@string/online"
-                        android:buttonTint="@color/colorPrimary"
                         android:textSize="@dimen/_12ssp" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/onlineDetailsConstraintLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_28sdp"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:visibility="gone">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/onlineReferenceIdInputLayout"
+                            style="@style/TextInputLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_48sdp"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:hint="@string/reference_id"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:shapeAppearance="@style/cornerRounded_TextInputLayout">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/onlineReferenceIdEditText"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:singleLine="true"
+                                android:textAppearance="@style/InputTextAppearance"
+                                android:textColor="@color/colorSecondary"
+                                android:textSize="@dimen/_12ssp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/onlineDateInputLayout"
+                            style="@style/TextInputLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_48sdp"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:hint="@string/date"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/onlineReferenceIdInputLayout"
+                            app:shapeAppearance="@style/cornerRounded_TextInputLayout">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/onlineDateEditText"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:inputType="date"
+                                android:singleLine="true"
+                                android:textAppearance="@style/InputTextAppearance"
+                                android:textColor="@color/colorSecondary"
+                                android:textSize="@dimen/_12ssp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <RadioButton
                         android:id="@+id/UPIRadioButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nunito"
-                        android:text="Upi"
                         android:buttonTint="@color/colorPrimary"
+                        android:fontFamily="@font/nunito"
+                        android:text="@string/upi"
                         android:textSize="@dimen/_12ssp" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/upiIdDetailsConstraintLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_28sdp"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:visibility="gone">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/upiIdInputLayout"
+                            style="@style/TextInputLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_48sdp"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:hint="@string/upi_id"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:shapeAppearance="@style/cornerRounded_TextInputLayout">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/upiIdEditText"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:singleLine="true"
+                                android:textAppearance="@style/InputTextAppearance"
+                                android:textColor="@color/colorSecondary"
+                                android:textSize="@dimen/_12ssp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/dateUpiIdInputLayout"
+                            style="@style/TextInputLayout"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_48sdp"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:hint="@string/date"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/upiIdInputLayout"
+                            app:shapeAppearance="@style/cornerRounded_TextInputLayout">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/dateUpiIdEditText"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:focusable="false"
+                                android:inputType="date"
+                                android:singleLine="true"
+                                android:textAppearance="@style/InputTextAppearance"
+                                android:textColor="@color/colorSecondary"
+                                android:textSize="@dimen/_12ssp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <RadioButton
                         android:id="@+id/cashRadioButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nunito"
-                        android:text="Cash"
                         android:buttonTint="@color/colorPrimary"
+                        android:fontFamily="@font/nunito"
+                        android:text="@string/cash"
                         android:textSize="@dimen/_12ssp" />
 
-                    <RadioButton
-                        android:id="@+id/creditDebitRadioButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@color/colorPrimary"
-                        android:fontFamily="@font/nunito"
-                        android:text="@string/credit_or_debit"
-                        android:textSize="@dimen/_12ssp" />
+                    <!--            <RadioButton-->
+                    <!--                android:id="@+id/creditDebitRadioButton"-->
+                    <!--                android:layout_width="wrap_content"-->
+                    <!--                android:layout_height="wrap_content"-->
+                    <!--                android:buttonTint="@color/colorPrimary"-->
+                    <!--                android:fontFamily="@font/nunito_regular"-->
+                    <!--                android:text="@string/credit_or_debit"-->
+                    <!--                android:textSize="@dimen/_12ssp" />-->
 
                 </RadioGroup>
 
@@ -304,9 +534,9 @@
                     android:textColor="@color/colorSecondary"
                     android:textSize="@dimen/_12ssp"
                     app:cornerRadius="@dimen/_8sdp"
+                    app:layout_constraintBottom_toBottomOf="@+id/guideline_bottom"
                     app:layout_constraintEnd_toStartOf="@+id/saveButton"
                     app:layout_constraintStart_toStartOf="@+id/guideline_left"
-                    app:layout_constraintBottom_toBottomOf="@+id/guideline_bottom"
                     app:layout_constraintTop_toBottomOf="@+id/paymentRadioGroup"
                     app:rippleColor="@color/black"
                     app:strokeColor="@color/colorSecondary"
@@ -360,9 +590,7 @@
                     android:orientation="vertical"
                     app:layout_constraintGuide_end="@dimen/_10sdp" />
 
-
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
-
     </LinearLayout>
 </layout>

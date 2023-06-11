@@ -9,7 +9,7 @@ public class CreateUserViewModel extends ViewModel {
 
     private final CreateUserRepository createUserRepository=new CreateUserRepository();
 
-    public LiveData<String> addUserResponseLiveData(UserModel userModel){
-        return createUserRepository.addUserToServer(userModel);
+    public LiveData<String> addUserResponseLiveData(UserModel userModel,String id){
+        return createUserRepository.addUserToServer(userModel,id);
     }
 }

@@ -10,7 +10,7 @@ import java.util.List;
 public class TransactionViewModel extends ViewModel {
     TransactionRepository transactionRepository=new TransactionRepository();
 
-    public LiveData<List<RecentTransactionModel>> getRecentTransactionsFromRepository(){
-        return transactionRepository.getRecentTransactionsFromServer();
+    public LiveData<List<RecentTransactionModel>> getRecentTransactionsFromRepository(String username,String startdate,String enddate){
+        return transactionRepository.getRecentTransactionsFromServer(username,startdate,enddate);
     }
 }

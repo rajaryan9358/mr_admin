@@ -41,5 +41,14 @@
     <string name="credit_or_debit">Credit or Debit</string>
     <string name="cancel">Cancel</string>
     <string name="amount">Amount</string>
+    <string name="alpha_1_greater_noida">Alpha 1 Greater Noida</string>
+    <string name="my_parties">My Parties</string>
+    <string name="see_all">See All</string>
+    <string name="reference_id">Reference Id:</string>
+    <string name="upi_id">Upi ID</string>
+    <string name="upi">Upi</string>
+    <string name="cash">Cash</string>
+    <string name="party_name">Party Name</string>
+    <string name="referenceid">ReferenceId</string>
 
 </resources>

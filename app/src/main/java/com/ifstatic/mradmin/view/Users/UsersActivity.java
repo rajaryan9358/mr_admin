@@ -78,11 +78,9 @@ public class UsersActivity extends AppCompatActivity {
         userAdapter.initItemClickListener(new UserAdapter.UserItemClickListener() {
             @Override
             public void onClickItem(int position, UserModel model) {
-                Bundle bundle = new Bundle();
-                bundle.putParcelable("User_data",model);
-                Toast.makeText(UsersActivity.this, "item clicked", Toast.LENGTH_SHORT).show();
-                AppBoiler.navigateToActivity(UsersActivity.this, UserDetailActivity.class,bundle);
-
+                Bundle bundlee = new Bundle();
+                bundlee.putParcelable("user_data",model);
+                AppBoiler.navigateToActivity(UsersActivity.this, UserDetailActivity.class,bundlee);
             }
         });
     }
@@ -94,7 +92,6 @@ public class UsersActivity extends AppCompatActivity {
             AppBoiler.navigateToActivity(UsersActivity.this, CreateUserActivity.class,null);
         });
     }
-
 
     private void notifyUserAdapter(List<UserModel> userlist) {
         userAdapter.notifyListItemChanged(userlist);

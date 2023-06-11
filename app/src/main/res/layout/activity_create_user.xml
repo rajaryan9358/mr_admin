@@ -46,7 +46,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_35sdp"
                 android:layout_marginHorizontal="@dimen/_5sdp"
-                android:inputType="text"
+                android:inputType="none"
+                android:editable="false"
                 android:padding="7dp"
                 android:textColor="#000000" />
         </com.google.android.material.textfield.TextInputLayout>

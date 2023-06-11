@@ -1,386 +1,534 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".view.TransactionDetail.TransactionDetailActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <include
-        android:id="@+id/header"
-        layout="@layout/layout_appbar_header" />
+    <data>
+        <variable
+            name="transactionDetail"
+            type="com.ifstatic.mradmin.models.RecentTransactionModel" />
+    </data>
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".view.TransactionDetail.TransactionDetailActivity">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <include
+            android:id="@+id/header"
+            layout="@layout/layout_appbar_header" />
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/mrNoLabelTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito_bold"
-                android:text="@string/mr_no"
-                android:textColor="@color/colorSecondary"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintStart_toStartOf="@id/guideline_left"
-                app:layout_constraintTop_toBottomOf="@id/guideline_top" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/mrNoTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_4sdp"
-                android:fontFamily="@font/nunito_bold"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintStart_toEndOf="@id/mrNoLabelTextView"
-                app:layout_constraintTop_toBottomOf="@id/guideline_top" />
+                <TextView
+                    android:id="@+id/mrNoLabelTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="@string/mr_no"
+                    android:textColor="@color/colorSecondary"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintStart_toStartOf="@id/guideline_left"
+                    app:layout_constraintTop_toBottomOf="@id/guideline_top" />
 
-            <TextView
-                android:id="@+id/dateLabelTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_4sdp"
-                android:fontFamily="@font/nunito_bold"
-                android:text="@string/date"
-                android:textColor="@color/colorSecondary"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintEnd_toStartOf="@id/dateTextView"
-                app:layout_constraintTop_toBottomOf="@id/guideline_top" />
+                <TextView
+                    android:id="@+id/mrNoTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_4sdp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="@{transactionDetail.mrNo}"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintStart_toEndOf="@id/mrNoLabelTextView"
+                    app:layout_constraintTop_toBottomOf="@id/guideline_top" />
 
-            <TextView
-                android:id="@+id/dateTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito_bold"
-                android:gravity="end"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintEnd_toEndOf="@id/guideline_right"
-                app:layout_constraintTop_toBottomOf="@id/guideline_top" />
+                <TextView
+                    android:id="@+id/dateLabelTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_4sdp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="@string/date"
+                    android:textColor="@color/colorSecondary"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintEnd_toStartOf="@id/dateTextView"
+                    app:layout_constraintTop_toBottomOf="@id/guideline_top" />
 
-
-            <TextView
-                android:id="@+id/nameLabelTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:fontFamily="@font/nunito_bold"
-                android:text="@string/name"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintStart_toStartOf="@id/guideline_left"
-                app:layout_constraintTop_toBottomOf="@id/mrNoLabelTextView" />
-
-            <TextView
-                android:id="@+id/nameTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:fontFamily="@font/nunito_semibold"
-                android:textColor="@color/colorSecondary"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintEnd_toEndOf="@id/guideline_right"
-                app:layout_constraintStart_toEndOf="@id/nameLabelTextView"
-                app:layout_constraintTop_toBottomOf="@id/mrNoTextView" />
-
-            <TextView
-                android:id="@+id/addressLabelTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:fontFamily="@font/nunito_bold"
-                android:text="@string/address"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintStart_toStartOf="@id/guideline_left"
-                app:layout_constraintTop_toBottomOf="@id/nameLabelTextView" />
-
-            <TextView
-                android:id="@+id/addressTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:fontFamily="@font/nunito_semibold"
-                android:textColor="@color/colorSecondary"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintEnd_toEndOf="@id/guideline_right"
-                app:layout_constraintStart_toEndOf="@id/addressLabelTextView"
-                app:layout_constraintTop_toBottomOf="@id/nameTextView" />
-
-            <TextView
-                android:id="@+id/amountLabelTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:fontFamily="@font/nunito_bold"
-                android:text="@string/amount_"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintStart_toStartOf="@id/guideline_left"
-                app:layout_constraintTop_toBottomOf="@id/addressLabelTextView" />
-
-            <TextView
-                android:id="@+id/amountTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_4sdp"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:fontFamily="@font/nunito_bold"
-                android:text="Rs.100"
-                android:textColor="@color/colorSecondary"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintStart_toEndOf="@id/amountLabelTextView"
-                app:layout_constraintTop_toBottomOf="@id/addressLabelTextView" />
-
-            <TextView
-                android:id="@+id/paymentModeLabelTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:layout_marginEnd="@dimen/_4sdp"
-                android:fontFamily="@font/nunito_bold"
-                android:text="@string/payment_mode"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintEnd_toStartOf="@id/paymentModeTextView"
-                app:layout_constraintTop_toBottomOf="@id/addressTextView" />
-
-            <TextView
-                android:id="@+id/paymentModeTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:fontFamily="@font/nunito_bold"
-                android:gravity="end"
-                android:text="@string/cheque"
-                android:textColor="@color/colorSecondary"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintEnd_toEndOf="@id/guideline_right"
-                app:layout_constraintTop_toBottomOf="@id/addressTextView" />
+                <TextView
+                    android:id="@+id/dateTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_bold"
+                    android:gravity="end"
+                    android:text="@{transactionDetail.date}"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                    app:layout_constraintTop_toBottomOf="@id/guideline_top" />
 
 
-            <TextView
-                android:id="@+id/paymentDetailsTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_26sdp"
-                android:fontFamily="@font/nunito_bold"
-                android:gravity="center"
-                android:text="@string/payment_details"
-                android:textColor="@color/colorSecondary"
-                android:textSize="@dimen/_14ssp"
-                app:layout_constraintEnd_toEndOf="@id/guideline_right"
-                app:layout_constraintStart_toStartOf="@id/guideline_left"
-                app:layout_constraintTop_toBottomOf="@id/paymentModeTextView" />
+                <TextView
+                    android:id="@+id/nameLabelTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="@string/name"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintStart_toStartOf="@id/guideline_left"
+                    app:layout_constraintTop_toBottomOf="@id/mrNoLabelTextView" />
 
-            <LinearLayout
-                android:id="@+id/paymentDetailsLayout"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/_86sdp"
-                android:layout_marginTop="@dimen/_16sdp"
-                android:background="@drawable/shape_rectangle_corner_cut"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="@id/guideline_right"
-                app:layout_constraintStart_toStartOf="@id/guideline_left"
-                app:layout_constraintTop_toBottomOf="@id/paymentDetailsTextView">
+                <TextView
+                    android:id="@+id/nameTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{transactionDetail.party}"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:textColor="@color/colorSecondary"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                    app:layout_constraintStart_toEndOf="@id/nameLabelTextView"
+                    app:layout_constraintTop_toBottomOf="@id/mrNoTextView" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/addressLabelTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="@string/address"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintStart_toStartOf="@id/guideline_left"
+                    app:layout_constraintTop_toBottomOf="@id/nameLabelTextView" />
 
-                    <TextView
-                        android:id="@+id/datePaymentDetailLabelTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:fontFamily="@font/nunito_bold"
-                        android:text="@string/date"
-                        android:textColor="@color/colorSecondary"
-                        android:textSize="@dimen/_12ssp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/addressTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:text="@{transactionDetail.address}"
+                    android:fontFamily="@font/nunito_semibold"
+                    android:textColor="@color/colorSecondary"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                    app:layout_constraintStart_toEndOf="@id/addressLabelTextView"
+                    app:layout_constraintTop_toBottomOf="@id/nameTextView" />
 
-                    <TextView
-                        android:id="@+id/datePaymentDetailTextView"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:fontFamily="@font/nunito_semibold"
-                        android:text="@string/may_25_2023"
-                        android:textColor="@color/colorSecondary"
-                        android:textSize="@dimen/_12ssp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/datePaymentDetailLabelTextView"
-                        app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/amountLabelTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="@string/amount_"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintStart_toStartOf="@id/guideline_left"
+                    app:layout_constraintTop_toBottomOf="@id/addressLabelTextView" />
 
-                    <TextView
-                        android:id="@+id/bankNameLabelTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:fontFamily="@font/nunito_bold"
-                        android:text="@string/bank_name"
-                        android:textColor="@color/colorSecondary"
-                        android:textSize="@dimen/_12ssp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/datePaymentDetailLabelTextView" />
+                <TextView
+                    android:id="@+id/amountTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:hint="Rs.100"
+                    android:text="@{transactionDetail.amount}"
+                    android:textColor="@color/colorSecondary"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintStart_toEndOf="@id/amountLabelTextView"
+                    app:layout_constraintTop_toBottomOf="@id/addressLabelTextView" />
 
-                    <TextView
-                        android:id="@+id/bankNameTextView"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:fontFamily="@font/nunito_semibold"
-                        android:text="ICICI Bank"
-                        android:textColor="@color/colorSecondary"
-                        android:textSize="@dimen/_12ssp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/bankNameLabelTextView"
-                        app:layout_constraintTop_toBottomOf="@id/datePaymentDetailTextView" />
+                <TextView
+                    android:id="@+id/paymentModeLabelTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_4sdp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="@string/payment_mode"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintEnd_toStartOf="@id/paymentModeTextView"
+                    app:layout_constraintTop_toBottomOf="@id/addressTextView" />
 
-                    <TextView
-                        android:id="@+id/chequeNoLabelTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:fontFamily="@font/nunito_bold"
-                        android:text="@string/cheque_no"
-                        android:textColor="@color/colorSecondary"
-                        android:textSize="@dimen/_12ssp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/bankNameLabelTextView" />
-
-                    <TextView
-                        android:id="@+id/chequeNoTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_4sdp"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:fontFamily="@font/nunito_semibold"
-                        android:text="HSJSKJ727282JJSSS"
-                        android:textColor="@color/colorSecondary"
-                        android:textSize="@dimen/_12ssp"
-                        app:layout_constraintStart_toEndOf="@id/chequeNoLabelTextView"
-                        app:layout_constraintTop_toBottomOf="@id/bankNameLabelTextView" />
+                <TextView
+                    android:id="@+id/paymentModeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:gravity="end"
+                    android:hint="@string/cheque"
+                    android:text="@{transactionDetail.paymentMode}"
+                    android:textColor="@color/colorSecondary"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                    app:layout_constraintTop_toBottomOf="@id/addressTextView" />
 
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/paymentDetailsTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_26sdp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:gravity="center"
+                    android:text="@string/payment_details"
+                    android:textColor="@color/colorSecondary"
+                    android:textSize="@dimen/_14ssp"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                    app:layout_constraintStart_toStartOf="@id/guideline_left"
+                    app:layout_constraintTop_toBottomOf="@id/paymentModeTextView" />
 
-            </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/paymentDetailsLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_86sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:background="@drawable/shape_rectangle_corner_cut"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                    app:layout_constraintStart_toStartOf="@id/guideline_left"
+                    app:layout_constraintTop_toBottomOf="@id/paymentDetailsTextView">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/chequqdetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/datePaymentDetailLabelTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:fontFamily="@font/nunito_bold"
+                            android:text="@string/date"
+                            android:textColor="@color/colorSecondary"
+                            android:textSize="@dimen/_12ssp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/datePaymentDetailTextView"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:fontFamily="@font/nunito_semibold"
+                            android:hint="@string/may_25_2023"
+                            android:text="@{transactionDetail.chequeDataModel.date}"
+                            android:textColor="@color/colorSecondary"
+                            android:textSize="@dimen/_12ssp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/datePaymentDetailLabelTextView"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/bankNameLabelTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:fontFamily="@font/nunito_bold"
+                            android:text="@string/bank_name"
+                            android:textColor="@color/colorSecondary"
+                            android:textSize="@dimen/_12ssp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/datePaymentDetailLabelTextView" />
+
+                        <TextView
+                            android:id="@+id/bankNameTextView"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:fontFamily="@font/nunito_semibold"
+                            android:hint="ICICI Bank"
+                            android:text="@{transactionDetail.chequeDataModel.bankName}"
+                            android:textColor="@color/colorSecondary"
+                            android:textSize="@dimen/_12ssp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/bankNameLabelTextView"
+                            app:layout_constraintTop_toBottomOf="@id/datePaymentDetailTextView" />
+
+                        <TextView
+                            android:id="@+id/chequeNoLabelTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:fontFamily="@font/nunito_bold"
+                            android:text="@string/cheque_no"
+                            android:textColor="@color/colorSecondary"
+                            android:textSize="@dimen/_12ssp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/bankNameLabelTextView" />
+
+                        <TextView
+                            android:id="@+id/chequeNoTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_4sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:fontFamily="@font/nunito_semibold"
+                            android:hint="HSJSKJ727282JJSSS"
+                            android:text="@{transactionDetail.chequeDataModel.chequeNo}"
+                            android:textColor="@color/colorSecondary"
+                            android:textSize="@dimen/_12ssp"
+                            app:layout_constraintStart_toEndOf="@id/chequeNoLabelTextView"
+                            app:layout_constraintTop_toBottomOf="@id/bankNameLabelTextView" />
 
 
-            <TextView
-                android:id="@+id/printTransactionTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginRight="@dimen/_4sdp"
-                android:drawableLeft="@drawable/ic_printer_"
-                android:drawablePadding="@dimen/_4sdp"
-                android:fontFamily="@font/nunito_bold"
-                android:text="@string/print_transaction"
-                android:textColor="@color/blue_color"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintBottom_toBottomOf="@id/guideline_bottom"
-                app:layout_constraintEnd_toStartOf="@+id/shareTransactionTextView"
-                app:layout_constraintStart_toStartOf="@id/guideline_left"
-                app:layout_constraintTop_toBottomOf="@id/paymentDetailsLayout" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/Upidetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone"
+                        >
 
-            <TextView
-                android:id="@+id/shareTransactionTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:drawableLeft="@drawable/ic_share"
-                android:drawablePadding="@dimen/_4sdp"
-                android:fontFamily="@font/nunito_bold"
-                android:text="Share Transaction"
-                android:textColor="@color/blue_color"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintBottom_toBottomOf="@id/guideline_bottom"
-                app:layout_constraintEnd_toEndOf="@id/guideline_right"
-                app:layout_constraintStart_toEndOf="@id/printTransactionTextView"
-                app:layout_constraintTop_toBottomOf="@id/paymentDetailsLayout" />
+                        <TextView
+                            android:id="@+id/upidatelabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:fontFamily="@font/nunito_bold"
+                            android:text="@string/date"
+                            android:textColor="@color/colorSecondary"
+                            android:textSize="@dimen/_12ssp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/editTransactionTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginRight="@dimen/_4sdp"
-                android:drawableLeft="@drawable/ic_edit"
-                android:drawableTint="@color/blue_color"
-                android:drawablePadding="@dimen/_4sdp"
-                android:fontFamily="@font/nunito_bold"
-                android:text="@string/edit_transaction"
-                android:textColor="@color/blue_color"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintBottom_toBottomOf="@id/guideline_bottom"
-                app:layout_constraintEnd_toStartOf="@+id/shareTransactionTextView"
-                app:layout_constraintStart_toStartOf="@id/guideline_left"
-                app:layout_constraintTop_toBottomOf="@id/printTransactionTextView" />
+                        <TextView
+                            android:id="@+id/upidate"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:fontFamily="@font/nunito_semibold"
+                            android:hint="@string/may_25_2023"
+                            android:text="@{transactionDetail.upiDetail.date}"
+                            android:textColor="@color/colorSecondary"
+                            android:textSize="@dimen/_12ssp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/upidatelabel"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/DeleteTransactionTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:drawableLeft="@drawable/ic_delete"
-                android:drawableTint="@color/red_800"
-                android:drawablePadding="@dimen/_4sdp"
-                android:fontFamily="@font/nunito_bold"
-                android:text="Delete Transaction"
-                android:textColor="@color/red_800"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintBottom_toBottomOf="@id/guideline_bottom"
-                app:layout_constraintEnd_toEndOf="@id/guideline_right"
-                app:layout_constraintStart_toEndOf="@id/printTransactionTextView"
-                app:layout_constraintTop_toBottomOf="@id/shareTransactionTextView" />
+                        <TextView
+                            android:id="@+id/upiIdLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:fontFamily="@font/nunito_bold"
+                            android:text="@string/upi_id"
+                            android:textColor="@color/colorSecondary"
+                            android:textSize="@dimen/_12ssp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/upidatelabel" />
+
+                        <TextView
+                            android:id="@+id/upiid"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:fontFamily="@font/nunito_semibold"
+                            android:hint="ICICI Bank"
+                            android:text="@{transactionDetail.upiDetail.upiId}"
+                            android:textColor="@color/colorSecondary"
+                            android:textSize="@dimen/_12ssp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/upiIdLabel"
+                            app:layout_constraintTop_toBottomOf="@id/upidate" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/onlineDetail"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone"
+                        >
+
+                        <TextView
+                            android:id="@+id/onlinedatelabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:fontFamily="@font/nunito_bold"
+                            android:text="@string/date"
+                            android:textColor="@color/colorSecondary"
+                            android:textSize="@dimen/_12ssp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/onlinedate"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:fontFamily="@font/nunito_semibold"
+                            android:hint="@string/may_25_2023"
+                            android:text="@{transactionDetail.onlineDetail.date}"
+                            android:textColor="@color/colorSecondary"
+                            android:textSize="@dimen/_12ssp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/onlinedatelabel"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/onlinereferenceLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:fontFamily="@font/nunito_bold"
+                            android:text="@string/referenceid"
+                            android:textColor="@color/colorSecondary"
+                            android:textSize="@dimen/_12ssp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/onlinedate" />
+
+                        <TextView
+                            android:id="@+id/onlinereference"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:fontFamily="@font/nunito_semibold"
+                            android:hint="ICICI Bank"
+                            android:text="@{transactionDetail.onlineDetail.referenceId}"
+                            android:textColor="@color/colorSecondary"
+                            android:textSize="@dimen/_12ssp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/onlinereferenceLabel"
+                            app:layout_constraintTop_toBottomOf="@id/onlinedate" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
 
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline_top"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_begin="@dimen/_10sdp" />
+                <TextView
+                    android:id="@+id/printTransactionTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_4sdp"
+                    android:drawableLeft="@drawable/ic_printer_"
+                    android:drawablePadding="@dimen/_4sdp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="@string/print_transaction"
+                    android:textColor="@color/blue_color"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintBottom_toBottomOf="@id/guideline_bottom"
+                    app:layout_constraintEnd_toStartOf="@+id/shareTransactionTextView"
+                    app:layout_constraintStart_toStartOf="@id/guideline_left"
+                    app:layout_constraintTop_toBottomOf="@id/paymentDetailsLayout" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline_left"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_end="398dp" />
+                <TextView
+                    android:id="@+id/shareTransactionTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:drawableLeft="@drawable/ic_share"
+                    android:drawablePadding="@dimen/_4sdp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="Share Transaction"
+                    android:textColor="@color/blue_color"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintBottom_toBottomOf="@id/guideline_bottom"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                    app:layout_constraintStart_toEndOf="@id/printTransactionTextView"
+                    app:layout_constraintTop_toBottomOf="@id/paymentDetailsLayout" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline_bottom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_end="@dimen/_10sdp" />
+                <TextView
+                    android:id="@+id/editTransactionTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_4sdp"
+                    android:drawableLeft="@drawable/ic_edit"
+                    android:drawableTint="@color/blue_color"
+                    android:drawablePadding="@dimen/_4sdp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="@string/edit_transaction"
+                    android:textColor="@color/blue_color"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintBottom_toBottomOf="@id/guideline_bottom"
+                    app:layout_constraintEnd_toStartOf="@+id/shareTransactionTextView"
+                    app:layout_constraintStart_toStartOf="@id/guideline_left"
+                    app:layout_constraintTop_toBottomOf="@id/printTransactionTextView" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline_right"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_end="@dimen/_10sdp" />
+                <TextView
+                    android:id="@+id/DeleteTransactionTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:drawableLeft="@drawable/ic_delete"
+                    android:drawableTint="@color/red_800"
+                    android:drawablePadding="@dimen/_4sdp"
+                    android:fontFamily="@font/nunito_bold"
+                    android:text="Delete Transaction"
+                    android:textColor="@color/red_800"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintBottom_toBottomOf="@id/guideline_bottom"
+                    app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                    app:layout_constraintStart_toEndOf="@id/printTransactionTextView"
+                    app:layout_constraintTop_toBottomOf="@id/shareTransactionTextView" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_top"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="@dimen/_10sdp" />
 
-</LinearLayout>
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="398dp" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_bottom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_end="@dimen/_10sdp" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="@dimen/_10sdp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+    </LinearLayout>
+</layout>

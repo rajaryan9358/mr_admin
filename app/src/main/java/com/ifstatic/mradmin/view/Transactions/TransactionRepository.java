@@ -21,7 +21,7 @@ public class TransactionRepository {
         databaseAdminReference = FirebaseHelper.getInstance().getDatabaseAdminReference();
     }
 
-    public MutableLiveData<List<RecentTransactionModel>> getRecentTransactionsFromServer(){
+    public MutableLiveData<List<RecentTransactionModel>> getRecentTransactionsFromServer(String username,String startdate,String enddate){
 
         MutableLiveData<List<RecentTransactionModel>> recentTransactionMutableLiveData = new MutableLiveData<>();
         databaseBillingReference.child("Transaction").addValueEventListener(new ValueEventListener() {
@@ -29,11 +29,55 @@ public class TransactionRepository {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 List<RecentTransactionModel> modelList = new ArrayList<>();
+                String uname,sdate,edate;
                 if(snapshot.exists()){
 
                     for(DataSnapshot keySnapshot : snapshot.getChildren()){
                         RecentTransactionModel model = keySnapshot.getValue(RecentTransactionModel.class);
-                        modelList.add(model);
+                        if (username.isEmpty()&&startdate.isEmpty()&&enddate.isEmpty()){
+                        modelList.add(model);}
+                        else if ((!username.isEmpty())&&startdate.isEmpty()&&enddate.isEmpty()){
+                            uname=model.getParty();
+                            if (uname.equals(username)){
+                                modelList.add(model);
+                            }
+                        }else if (username.isEmpty()&&(!startdate.isEmpty())&&enddate.isEmpty()){
+                            sdate=model.getDate();
+                            if (startdate.compareTo(sdate)<=0){
+                                modelList.add(model);
+                            }
+                        }else if (username.isEmpty()&&(!enddate.isEmpty())&&startdate.isEmpty()){
+                            edate=model.getDate();
+                                    if(enddate.compareTo(edate)>=0){
+                                        modelList.add(model);
+                                    }
+                        }else if ((!username.isEmpty())&&(!startdate.isEmpty())&&enddate.isEmpty()){
+                                uname=model.getParty();
+                                sdate=model.getDate();
+                                if (uname.equals(username)&&startdate.compareTo(sdate)<=0){
+                                    modelList.add(model);
+                                }
+                        }else if ((!username.isEmpty())&&(!enddate.isEmpty())&&startdate.isEmpty()){
+                            uname=model.getParty();
+                            edate=model.getDate();
+                            if (uname.equals(username)&&enddate.compareTo(edate)>=0){
+                                modelList.add(model);
+                            }
+
+                        }else if ((!startdate.isEmpty())&&(!enddate.isEmpty())&&username.isEmpty()){
+                            edate=model.getDate();
+                            sdate=model.getDate();
+                            if (edate.compareTo(enddate)>=0&&startdate.compareTo(sdate)<=0){
+                                modelList.add(model);
+                            }
+                        }else if ((!startdate.isEmpty())&&(!enddate.isEmpty())&&(!username.isEmpty())){
+                            uname=model.getParty();
+                            sdate=model.getDate();
+                            edate=model.getDate();
+                            if (username.equals(uname)&&startdate.compareTo(sdate)<=0&&enddate.compareTo(edate)>=0){
+                                modelList.add(model);
+                            }
+                        }
                     }
                 }
                 recentTransactionMutableLiveData.setValue(modelList);

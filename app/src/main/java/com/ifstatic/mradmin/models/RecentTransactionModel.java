@@ -12,10 +12,55 @@ public class   RecentTransactionModel implements Parcelable {
     private String paymentMode ;
     private String amount;
     private String date;
+    private String address;
+    private String userId;
+    private String transactionId;
     private ChequeDataModel chequeDataModel;
+    private UpiDetailModel upiDetail;
+    private OnlineDetailModel onlineDetail;
 
     public RecentTransactionModel() {
     }
+
+    public RecentTransactionModel(String mrNo, String party, String paymentMode, String amount, String date, String address, String userId, String transactionId, ChequeDataModel chequeDataModel, UpiDetailModel upiDetail, OnlineDetailModel onlineDetail) {
+        this.mrNo = mrNo;
+        this.party = party;
+        this.paymentMode = paymentMode;
+        this.amount = amount;
+        this.date = date;
+        this.address = address;
+        this.userId = userId;
+        this.transactionId = transactionId;
+        this.chequeDataModel = chequeDataModel;
+        this.upiDetail = upiDetail;
+        this.onlineDetail = onlineDetail;
+    }
+
+    protected RecentTransactionModel(Parcel in) {
+        mrNo = in.readString();
+        party = in.readString();
+        paymentMode = in.readString();
+        amount = in.readString();
+        date = in.readString();
+        address = in.readString();
+        userId = in.readString();
+        transactionId = in.readString();
+        chequeDataModel = in.readParcelable(ChequeDataModel.class.getClassLoader());
+        upiDetail = in.readParcelable(UpiDetailModel.class.getClassLoader());
+        onlineDetail = in.readParcelable(OnlineDetailModel.class.getClassLoader());
+    }
+
+    public static final Creator<RecentTransactionModel> CREATOR = new Creator<RecentTransactionModel>() {
+        @Override
+        public RecentTransactionModel createFromParcel(Parcel in) {
+            return new RecentTransactionModel(in);
+        }
+
+        @Override
+        public RecentTransactionModel[] newArray(int size) {
+            return new RecentTransactionModel[size];
+        }
+    };
 
     public String getMrNo() {
         return mrNo;
@@ -57,6 +102,30 @@ public class   RecentTransactionModel implements Parcelable {
         this.date = date;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getTransactionId() {
+        return transactionId;
+    }
+
+    public void setTransactionId(String transactionId) {
+        this.transactionId = transactionId;
+    }
+
     public ChequeDataModel getChequeDataModel() {
         return chequeDataModel;
     }
@@ -65,26 +134,21 @@ public class   RecentTransactionModel implements Parcelable {
         this.chequeDataModel = chequeDataModel;
     }
 
-    protected RecentTransactionModel(Parcel in) {
-        mrNo = in.readString();
-        party = in.readString();
-        paymentMode = in.readString();
-        amount = in.readString();
-        date = in.readString();
-        chequeDataModel = in.readParcelable(ChequeDataModel.class.getClassLoader());
+    public UpiDetailModel getUpiDetail() {
+        return upiDetail;
     }
 
-    public static final Creator<RecentTransactionModel> CREATOR = new Creator<RecentTransactionModel>() {
-        @Override
-        public RecentTransactionModel createFromParcel(Parcel in) {
-            return new RecentTransactionModel(in);
-        }
+    public void setUpiDetail(UpiDetailModel upiDetail) {
+        this.upiDetail = upiDetail;
+    }
 
-        @Override
-        public RecentTransactionModel[] newArray(int size) {
-            return new RecentTransactionModel[size];
-        }
-    };
+    public OnlineDetailModel getOnlineDetail() {
+        return onlineDetail;
+    }
+
+    public void setOnlineDetail(OnlineDetailModel onlineDetail) {
+        this.onlineDetail = onlineDetail;
+    }
 
     @Override
     public int describeContents() {
@@ -98,15 +162,11 @@ public class   RecentTransactionModel implements Parcelable {
         parcel.writeString(paymentMode);
         parcel.writeString(amount);
         parcel.writeString(date);
+        parcel.writeString(address);
+        parcel.writeString(userId);
+        parcel.writeString(transactionId);
         parcel.writeParcelable(chequeDataModel, i);
-    }
-
-    public void readFromParcel(Parcel source){
-        this.mrNo= source.readString();
-        this.party= source.readString();
-        this.amount= source.readString();
-        this.paymentMode= source.readString();
-        this.date=source.readString();
-        this.chequeDataModel=source.readParcelable(ChequeDataModel.class.getClassLoader());
+        parcel.writeParcelable(upiDetail, i);
+        parcel.writeParcelable(onlineDetail, i);
     }
 }

@@ -7,7 +7,7 @@
 
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -18,17 +18,23 @@
             layout="@layout/layout_appbar_header" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/headingusers"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/users"
             android:textSize="@dimen/_18sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginStart="@dimen/_10sdp"
+            app:layout_constraintTop_toBottomOf="@+id/Userheader"
             android:textColor="@color/colorSecondary"/>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerviewUsers"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_400sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/headingusers"
+            app:layout_constraintBottom_toTopOf="@+id/createuserbutton"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             />
         
@@ -36,9 +42,13 @@
             android:id="@+id/createuserbutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="bottom|center_horizontal"
             android:drawableStart="@drawable/ic_add"
             android:text="@string/create_user"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="@dimen/_20sdp"
             android:textAllCaps="false"
             app:cornerRadius="@dimen/_8sdp"
             android:padding="@dimen/_10sdp"
@@ -47,5 +57,5 @@
 
             
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -9,6 +9,8 @@ import androidx.lifecycle.ViewModelProvider;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.Toast;
 
 import com.ifstatic.mradmin.R;
@@ -16,6 +18,7 @@ import com.ifstatic.mradmin.adapter.RecentTransactionAdapter;
 import com.ifstatic.mradmin.databinding.ActivityTransactionsBinding;
 import com.ifstatic.mradmin.models.RecentTransactionModel;
 import com.ifstatic.mradmin.utilities.AppBoiler;
+import com.ifstatic.mradmin.utilities.DateFormat;
 import com.ifstatic.mradmin.view.Dashboard.DashboardActivity;
 import com.ifstatic.mradmin.view.TransactionDetail.TransactionDetailActivity;
 
@@ -27,7 +30,7 @@ public class TransactionsActivity extends AppCompatActivity {
     RecentTransactionAdapter transactionAdapter;
     TransactionViewModel transactionViewModel;
     Dialog progressDialog;
-    String currentMrNo;
+    String currentMrNo,startdate="",enddate="",username="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +43,7 @@ public class TransactionsActivity extends AppCompatActivity {
         if(AppBoiler.isInternetConnected(this)){
 
             progressDialog = AppBoiler.setProgressDialog(this);
-            getRecentTransactionFromServer();
+            getRecentTransactionFromServer(username,startdate,enddate);
         } else {
             AppBoiler.showSnackBarForInternet(this,transactionsBinding.getRoot());
         }
@@ -49,11 +52,103 @@ public class TransactionsActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void setListners() {
         transactionsBinding.header.titleTextView.setText("Transactions");
+
+        transactionsBinding.startdate.setOnClickListener(v->{
+            DateFormat.getDateFromCalender(TransactionsActivity.this, new DateFormat.DateSelectListener() {
+                @Override
+                public void onSelectedDate(String date) {
+                    transactionsBinding.startdate.setText(date);
+                    username=transactionsBinding.usernamedropdown.getText().toString();
+                    startdate=transactionsBinding.startdate.getText().toString();
+                    enddate=transactionsBinding.enddate.getText().toString();
+                    getRecentTransactionFromServer(username,date,enddate);
+                }
+            });
+        });
+
+        transactionsBinding.enddate.setOnClickListener(v->{
+            DateFormat.getDateFromCalender(TransactionsActivity.this, new DateFormat.DateSelectListener() {
+                @Override
+                public void onSelectedDate(String date) {
+                    transactionsBinding.enddate.setText(date);
+                    username=transactionsBinding.usernamedropdown.getText().toString();
+                    startdate=transactionsBinding.startdate.getText().toString();
+                    enddate=transactionsBinding.enddate.getText().toString();
+                    getRecentTransactionFromServer(username,startdate,date);
+                }
+            });
+        });
+
+        transactionsBinding.usernamedropdown.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                username=transactionsBinding.usernamedropdown.getText().toString();
+                startdate=transactionsBinding.startdate.getText().toString();
+                enddate=transactionsBinding.enddate.getText().toString();
+                getRecentTransactionFromServer(username,startdate,enddate);
+
+            }
+        });
+
+        transactionsBinding.startdate.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                username=transactionsBinding.usernamedropdown.getText().toString();
+                startdate=transactionsBinding.startdate.getText().toString();
+                enddate=transactionsBinding.enddate.getText().toString();
+                getRecentTransactionFromServer(username,startdate,enddate);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+//                username=transactionsBinding.usernamedropdown.getText().toString();
+//                startdate=transactionsBinding.startdate.getText().toString();
+//                enddate=transactionsBinding.enddate.getText().toString();
+//                getRecentTransactionFromServer(username,startdate,enddate);
+            }
+        });
+        transactionsBinding.enddate.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                username=transactionsBinding.usernamedropdown.getText().toString();
+                startdate=transactionsBinding.startdate.getText().toString();
+                enddate=transactionsBinding.enddate.getText().toString();
+                getRecentTransactionFromServer(username,startdate,enddate);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+//                username=transactionsBinding.usernamedropdown.getText().toString();
+//                startdate=transactionsBinding.startdate.getText().toString();
+//                enddate=transactionsBinding.enddate.getText().toString();
+//                getRecentTransactionFromServer(username,startdate,enddate);
+            }
+        });
     }
 
-    private void getRecentTransactionFromServer(){
+    private void getRecentTransactionFromServer(String username,String startdate,String enddate){
 
-        LiveData<List<RecentTransactionModel>> recentTransactionModelLiveData = transactionViewModel.getRecentTransactionsFromRepository();
+        LiveData<List<RecentTransactionModel>> recentTransactionModelLiveData = transactionViewModel.getRecentTransactionsFromRepository(username,startdate,enddate);
 
         recentTransactionModelLiveData.observe(this, new Observer<List<RecentTransactionModel>>() {
             @Override
@@ -87,7 +182,7 @@ public class TransactionsActivity extends AppCompatActivity {
 
                 Bundle bundle = new Bundle();
                 bundle.putParcelable("transaction_data",transactionModel);
-                AppBoiler.navigateToActivity(TransactionsActivity.this, TransactionDetailActivity.class,null);
+                AppBoiler.navigateToActivity(TransactionsActivity.this, TransactionDetailActivity.class,bundle);
             }
 
         });
@@ -97,7 +192,5 @@ public class TransactionsActivity extends AppCompatActivity {
     private void notifyRecentTransactionAdapter(List<RecentTransactionModel> transactionModelList){
         transactionAdapter.notifyListItemChanged(transactionModelList);
     }
-
-
 
 }
