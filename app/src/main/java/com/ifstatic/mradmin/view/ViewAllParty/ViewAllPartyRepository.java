@@ -23,7 +23,7 @@ public class ViewAllPartyRepository {
         databaseAdminReference = FirebaseHelper.getInstance().getDatabaseAdminReference();
     }
 
-    public MutableLiveData<List<PartyModel>> getMyPartiesFromServer(){
+    public MutableLiveData<List<PartyModel>> getMyPartiesFromServer(String partyname){
 
         MutableLiveData<List<PartyModel>> myPartiesMutableList = new MutableLiveData<>();
 
@@ -37,7 +37,13 @@ public class ViewAllPartyRepository {
                 if(snapshot.exists()){
                     for(DataSnapshot keySnapshot : snapshot.getChildren()){
                         PartyModel model = keySnapshot.getValue(PartyModel.class);
-                        modelList.add(model);
+                        if (partyname.isEmpty()){
+                        modelList.add(model);}
+                        else if (!partyname.isEmpty()){
+                            if (partyname.equals(model.getParty())){
+                                modelList.add(model);
+                            }
+                        }
                     }
                 }
                 myPartiesMutableList.setValue(modelList);

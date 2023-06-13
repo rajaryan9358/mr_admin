@@ -13,4 +13,9 @@ public class TransactionViewModel extends ViewModel {
     public LiveData<List<RecentTransactionModel>> getRecentTransactionsFromRepository(String username,String startdate,String enddate){
         return transactionRepository.getRecentTransactionsFromServer(username,startdate,enddate);
     }
+
+    public  LiveData<List<String>> getUserNameListFromRepository(){
+        return transactionRepository.getUserNameList();
+    }
+
 }

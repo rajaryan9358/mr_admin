@@ -6,17 +6,7 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 
 public class UpiDetailModel  implements Parcelable {
-    public static final Parcelable.Creator<UpiDetailModel> CREATOR = new Parcelable.Creator<UpiDetailModel>() {
-        @Override
-        public UpiDetailModel createFromParcel(Parcel source) {
-            return new UpiDetailModel(source);
-        }
 
-        @Override
-        public UpiDetailModel[] newArray(int size) {
-            return new UpiDetailModel[size];
-        }
-    };
     private String upiId;
     private String date;
 
@@ -29,10 +19,21 @@ public class UpiDetailModel  implements Parcelable {
     }
 
     protected UpiDetailModel(Parcel in) {
-        this.date = in.readString();
-        this.upiId = in.readString();
-
+        upiId = in.readString();
+        date = in.readString();
     }
+
+    public static final Creator<UpiDetailModel> CREATOR = new Creator<UpiDetailModel>() {
+        @Override
+        public UpiDetailModel createFromParcel(Parcel in) {
+            return new UpiDetailModel(in);
+        }
+
+        @Override
+        public UpiDetailModel[] newArray(int size) {
+            return new UpiDetailModel[size];
+        }
+    };
 
     public String getUpiId() {
         return upiId;
@@ -57,14 +58,7 @@ public class UpiDetailModel  implements Parcelable {
 
     @Override
     public void writeToParcel(@NonNull Parcel parcel, int i) {
-        parcel.writeString(this.date);
-        parcel.writeString(this.upiId);
-
-    }
-
-    public void readFromParcel(Parcel source) {
-        this.date = source.readString();
-        this.upiId = source.readString();
-
+        parcel.writeString(upiId);
+        parcel.writeString(date);
     }
 }

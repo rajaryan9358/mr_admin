@@ -14,6 +14,7 @@ public class   RecentTransactionModel implements Parcelable {
     private String date;
     private String address;
     private String userId;
+    private String username;
     private String transactionId;
     private ChequeDataModel chequeDataModel;
     private UpiDetailModel upiDetail;
@@ -22,7 +23,7 @@ public class   RecentTransactionModel implements Parcelable {
     public RecentTransactionModel() {
     }
 
-    public RecentTransactionModel(String mrNo, String party, String paymentMode, String amount, String date, String address, String userId, String transactionId, ChequeDataModel chequeDataModel, UpiDetailModel upiDetail, OnlineDetailModel onlineDetail) {
+    public RecentTransactionModel(String mrNo, String party, String paymentMode, String amount, String date, String address, String userId, String username, String transactionId, ChequeDataModel chequeDataModel, UpiDetailModel upiDetail, OnlineDetailModel onlineDetail) {
         this.mrNo = mrNo;
         this.party = party;
         this.paymentMode = paymentMode;
@@ -30,6 +31,7 @@ public class   RecentTransactionModel implements Parcelable {
         this.date = date;
         this.address = address;
         this.userId = userId;
+        this.username = username;
         this.transactionId = transactionId;
         this.chequeDataModel = chequeDataModel;
         this.upiDetail = upiDetail;
@@ -44,6 +46,7 @@ public class   RecentTransactionModel implements Parcelable {
         date = in.readString();
         address = in.readString();
         userId = in.readString();
+        username = in.readString();
         transactionId = in.readString();
         chequeDataModel = in.readParcelable(ChequeDataModel.class.getClassLoader());
         upiDetail = in.readParcelable(UpiDetailModel.class.getClassLoader());
@@ -118,6 +121,14 @@ public class   RecentTransactionModel implements Parcelable {
         this.userId = userId;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getTransactionId() {
         return transactionId;
     }
@@ -164,6 +175,7 @@ public class   RecentTransactionModel implements Parcelable {
         parcel.writeString(date);
         parcel.writeString(address);
         parcel.writeString(userId);
+        parcel.writeString(username);
         parcel.writeString(transactionId);
         parcel.writeParcelable(chequeDataModel, i);
         parcel.writeParcelable(upiDetail, i);

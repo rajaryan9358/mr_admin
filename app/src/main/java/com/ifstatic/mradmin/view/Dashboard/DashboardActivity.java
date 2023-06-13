@@ -273,7 +273,7 @@ public class DashboardActivity extends AppCompatActivity{
 
                     Bundle bundle = new Bundle();
                     bundle.putParcelable("party_data",model);
-//                    AppBoiler.navigateToActivity(DashboardActivity.this, PartyDetailActivity.class,bundle);
+                    AppBoiler.navigateToActivity(DashboardActivity.this, PartyDetailActivity.class,bundle);
                 }
             });
         }

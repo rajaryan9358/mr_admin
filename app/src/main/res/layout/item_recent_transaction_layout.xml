@@ -55,7 +55,7 @@
             android:layout_margin="@dimen/_4sdp"
             android:fontFamily="@font/nunito"
             android:hint="@string/username"
-            android:text="@{transactionmodel.party}"
+            android:text="@{transactionmodel.username}"
             android:textAlignment="center"
             android:textColor="@color/colorSecondary"
             android:textSize="@dimen/_10ssp"

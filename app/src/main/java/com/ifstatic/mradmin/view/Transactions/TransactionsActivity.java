@@ -52,7 +52,9 @@ public class TransactionsActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void setListners() {
         transactionsBinding.header.titleTextView.setText("Transactions");
-
+        transactionsBinding.header.backImageView.setOnClickListener(v->{
+            onBackPressed();
+        });
         transactionsBinding.startdate.setOnClickListener(v->{
             DateFormat.getDateFromCalender(TransactionsActivity.this, new DateFormat.DateSelectListener() {
                 @Override

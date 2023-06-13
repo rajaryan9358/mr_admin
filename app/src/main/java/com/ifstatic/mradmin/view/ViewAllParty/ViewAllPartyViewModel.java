@@ -14,10 +14,10 @@ public class ViewAllPartyViewModel extends ViewModel {
         private LiveData<List<PartyModel>> myPartiesListLiveData;
 
 
-        public LiveData<List<PartyModel>> getPartiesModelListFromRepository(){
+        public LiveData<List<PartyModel>> getPartiesModelListFromRepository(String partyname){
 
                 if(myPartiesListLiveData == null){
-                        myPartiesListLiveData =  viewAllPartyRepository.getMyPartiesFromServer();
+                        myPartiesListLiveData =  viewAllPartyRepository.getMyPartiesFromServer(partyname);
                 }
                 return myPartiesListLiveData;
         }

@@ -46,6 +46,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:textColor="#000000"
+                android:completionThreshold="1"
                 android:padding="7dp"
                 android:textColorLink="#FFFFFF" />
 
@@ -69,7 +70,6 @@
             app:boxCornerRadiusBottomEnd="8dp"
             app:boxCornerRadiusTopEnd="8dp"
             android:layout_marginHorizontal="@dimen/_10sdp"
-            android:focusable="false"
             app:boxCornerRadiusBottomStart="8dp"
             app:boxCornerRadiusTopStart="8dp"
             android:layout_marginTop="18dp">
@@ -81,6 +81,7 @@
                 android:inputType="date"
                 android:textColor="#000000"
                 android:padding="7dp"
+                android:focusable="false"
                 android:drawableEnd="@drawable/ic_calendar"
                 android:drawablePadding="@dimen/_5sdp"
                 android:textColorLink="#FFFFFF" />
@@ -110,6 +111,7 @@
             android:layout_height="wrap_content"
             android:inputType="date"
             android:paddingEnd="@dimen/_5sdp"
+            android:focusable="false"
             android:textColor="#000000"
             android:drawableEnd="@drawable/ic_calendar"
             android:padding="7dp"

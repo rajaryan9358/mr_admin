@@ -47,7 +47,7 @@ public class EditTransactionActivity extends AppCompatActivity {
     ChequeDataModel chequeDataModel=new ChequeDataModel();
     OnlineDetailModel onlineDetailModel=new OnlineDetailModel();
     UpiDetailModel upiDetailModel=new UpiDetailModel();
-    String transactionId=null,UserId;
+    String transactionId=null,UserId=null;
     Dialog progressDialog;
     boolean mode=false;
     RecentTransactionModel transactionModel=new RecentTransactionModel();
@@ -110,6 +110,7 @@ public class EditTransactionActivity extends AppCompatActivity {
 
         editTransactionBinding.saveButton.setOnClickListener(v->{
             if(cheakDetial()){
+
                 Toast.makeText(this, transactionId, Toast.LENGTH_SHORT).show();
                 transactionModel.setDate(editTransactionBinding.transactiondate.getText().toString());
                 transactionModel.setAddress(editTransactionBinding.addressEditText.getText().toString());
@@ -117,7 +118,8 @@ public class EditTransactionActivity extends AppCompatActivity {
                 transactionModel.setMrNo(editTransactionBinding.mrNoTedittext.getText().toString());
                 transactionModel.setParty(editTransactionBinding.partynamedropdown.getText().toString());
                 transactionModel.setTransactionId(transactionId);
-                transactionModel.setUserId("UserId");
+                transactionModel.setUserId(UserId);
+                transactionModel.setUsername(editTransactionBinding.usernamedropdown.getText().toString());
                 transactionModel.setParty(editTransactionBinding.partynamedropdown.getText().toString());
                 transactionModel.setPaymentMode(paymentMode);
                 transactionModel.setChequeDataModel(chequeDataModel);
@@ -221,6 +223,22 @@ public class EditTransactionActivity extends AppCompatActivity {
             Toast.makeText(this, "Select Payment Mode", Toast.LENGTH_SHORT).show();
             return false;
         }else{
+
+            if (UserId==null){
+                Toast.makeText(this, "emptyuser id", Toast.LENGTH_SHORT).show();
+                UserModel currentuser=findUserByName(userslist,editTransactionBinding.usernamedropdown.getText().toString());
+                if (currentuser!=null){
+                    UserId=currentuser.getUserID();
+                    Toast.makeText(this, "now filled", Toast.LENGTH_SHORT).show();
+                }else{
+                    UserId=null;
+                    Toast.makeText(this, "Invalid Username", Toast.LENGTH_SHORT).show();
+                    return false;
+                }
+
+
+            }
+
             if (paymentMode.equals("Cheque")){
                 if (editTransactionBinding.dateEditText.getText().toString().trim().isEmpty()){
                     Toast.makeText(this, "enter cheque date", Toast.LENGTH_SHORT).show();
@@ -279,6 +297,8 @@ public class EditTransactionActivity extends AppCompatActivity {
                     return true;
 
                 }
+
+
 
             }
             if (paymentMode.equals("Cash")){
@@ -351,13 +371,10 @@ public class EditTransactionActivity extends AppCompatActivity {
                 }else if(userModels.size()>0) {
                         userslist=userModels;
                     Toast.makeText(EditTransactionActivity.this, "runnning", Toast.LENGTH_SHORT).show();
-                    for (int i=0;i<userModels.size();i++){
-                        username=new String[userModels.size()];
-                        username[i]=userModels.get(i).getUsername();
-                    }
-//                    ArrayAdapter<String> usernameadapter = new ArrayAdapter<>(EditTransactionActivity.this, android.R.layout.simple_dropdown_item_1line, username);
-//                    editTransactionBinding.usernamedropdown.setAdapter(usernameadapter);
-//
+                    List<String> userNameList = getUserNames(userModels);
+                    ArrayAdapter<String> usernameadapter = new ArrayAdapter<>(EditTransactionActivity.this, android.R.layout.simple_dropdown_item_1line, userNameList);
+                    editTransactionBinding.usernamedropdown.setAdapter(usernameadapter);
+
 //                    editTransactionBinding.usernamedropdown.setOnTouchListener(new View.OnTouchListener() {
 //                        @Override
 //                        public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -368,6 +385,23 @@ public class EditTransactionActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private List<String> getUserNames(List<UserModel> users) {
+        List<String> userNames = new ArrayList<>();
+        for (UserModel user : users) {
+            userNames.add(user.getUsername());
+        }
+        return userNames;
+    }
+
+    private UserModel findUserByName(List<UserModel> users, String username) {
+        for (UserModel user : users) {
+            if (user.getUsername().equals(username)) {
+                return user;
+            }
+        }
+        return null;
     }
 
 

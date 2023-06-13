@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.ifstatic.mradmin.R;
 import com.ifstatic.mradmin.databinding.ActivityTransactionDetailBinding;
+import com.ifstatic.mradmin.models.OnlineDetailModel;
 import com.ifstatic.mradmin.models.RecentTransactionModel;
 import com.ifstatic.mradmin.utilities.AppBoiler;
 import com.ifstatic.mradmin.utilities.Constants;
@@ -48,6 +49,7 @@ import java.util.Locale;
 public class TransactionDetailActivity extends AppCompatActivity {
     ActivityTransactionDetailBinding transactionDetailBinding;
     RecentTransactionModel transactionModel;
+//    OnlineDetailModel onlineDetailModel=new OnlineDetailModel();
     private TransactionDetailViewModel transactionDetailViewModel;
     private Dialog progressDialog;
     PdfGenerator  pdfGenerator;
@@ -71,7 +73,7 @@ public class TransactionDetailActivity extends AppCompatActivity {
                     transactionDetailBinding.onlinedate.setText(transactionModel.getOnlineDetail().getDate());
                     transactionDetailBinding.onlinereference.setText(transactionModel.getOnlineDetail().getReferenceId());
                     break;
-                case "Upi":
+                case "UPI":
                         transactionDetailBinding.Upidetails.setVisibility(View.VISIBLE);
                         transactionDetailBinding.upiid.setText(transactionModel.getUpiDetail().getUpiId());
                         transactionDetailBinding.upidate.setText(transactionModel.getUpiDetail().getDate());
@@ -108,7 +110,7 @@ public class TransactionDetailActivity extends AppCompatActivity {
         transactionDetailBinding.editTransactionTextView.setOnClickListener(v->{
             Bundle bundle =new Bundle();
             bundle.putParcelable("transaction_data",transactionModel);
-            AppBoiler.navigateToActivity(TransactionDetailActivity.this, EditTransactionActivity.class,bundle);
+            AppBoiler.navigateToActivityWithFinish(TransactionDetailActivity.this, EditTransactionActivity.class,bundle);
         });
         transactionDetailBinding.printTransactionTextView.setOnClickListener(v->{
          if (transactionModel!=null){
@@ -130,17 +132,6 @@ public class TransactionDetailActivity extends AppCompatActivity {
         });
     }
 
-    private void requestPermission() {
-        // things to implemented
-    }
-
-    private boolean checkpermissions() {
-        int readpermission=ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE);
-        int writepermission=ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE);
-
-        return readpermission== PackageManager.PERMISSION_GRANTED&& writepermission==PackageManager.PERMISSION_GRANTED;
-
-    }
 
     private void getBundles() {
         Bundle bundle = getIntent().getExtras();
@@ -255,9 +246,9 @@ public class TransactionDetailActivity extends AppCompatActivity {
                 case "UPI":
                     table.addCell(new Cell().add(new Paragraph("Upi Id").setFontSize(10)));
                     table.addCell(new Cell().add(new Paragraph(transactionModel.getUpiDetail().getUpiId()).setFontSize(10)));
-
                     table.addCell(new Cell().add(new Paragraph("Date").setFontSize(10)));
                     table.addCell(new Cell().add(new Paragraph(transactionModel.getUpiDetail().getDate()).setFontSize(10)));
+                    break;
                 case "Online":
                     table.addCell(new Cell().add(new Paragraph("reference Id").setFontSize(10)));
                     table.addCell(new Cell().add(new Paragraph(transactionModel.getOnlineDetail().getReferenceId()).setFontSize(10)));
